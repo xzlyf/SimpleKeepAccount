@@ -12,16 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tips"
+    <com.xz.ska.custom.TipsView
+        android:id="@+id/tips_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ellipsize="marquee"
-        android:focusable="true"
-        android:marqueeRepeatLimit="marquee_forever"
-        android:singleLine="true"
-        android:text="我是小提示啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦" />
-
+        app:hideIcon="true"
+        app:textTips="测试消息"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_money"

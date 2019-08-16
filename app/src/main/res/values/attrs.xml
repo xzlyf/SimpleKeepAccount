@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TipsView">
+        <attr name="textTips" format="string" />
+        <attr name="iconTips" format="reference"/>
+        <attr name="hideIcon" format="boolean"/>
+        <attr name="background" format="reference"/>
+    </declare-styleable>
+
+</resources>
