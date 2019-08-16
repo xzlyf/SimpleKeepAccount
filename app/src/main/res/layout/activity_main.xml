@@ -18,7 +18,6 @@
         android:layout_height="wrap_content"
         android:ellipsize="marquee"
         android:focusable="true"
-        android:focusableInTouchMode="true"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:text="我是小提示啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦啦" />

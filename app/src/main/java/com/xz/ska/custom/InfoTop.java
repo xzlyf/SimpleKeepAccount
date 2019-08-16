@@ -36,6 +36,7 @@ public class InfoTop extends FrameLayout {
         zhichuText = findViewById(R.id.zhichu_text);
         dateChoose = findViewById(R.id.date_choose);
         todayMoneyText = findViewById(R.id.today_money_text);
+
     }
 
     public void setZhiChu(String t){
