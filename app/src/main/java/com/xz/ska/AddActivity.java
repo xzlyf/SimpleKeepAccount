@@ -82,13 +82,13 @@ public class AddActivity extends BaseActivity {
                 if (kb_height == 0) {
                     //获取虚拟键盘高度
                     kb_height = findViewById(R.id.number_keyboard).getMeasuredHeight();
+                    ViewGroup.LayoutParams param = recyclerType.getLayoutParams();
+                    //用屏幕高度减去虚拟键盘高度等于recycler布局的高度
+                    param.height = sc_height-kb_height;
+                    recyclerType.setLayoutParams(param);
                 }
 
-                ViewGroup.LayoutParams param = recyclerType.getLayoutParams();
-                Log.d("xz", "onClick: " + param.height);
-                Log.d("xz", "onClick: " + recyclerType.getMeasuredHeight());
-                Log.d("xz", "onClick: " + sc_height);
-                Log.d("xz", "onClick: " + kb_height);
+
             }
         });
     }
@@ -96,6 +96,7 @@ public class AddActivity extends BaseActivity {
 
     @Override
     public void showData(Object object) {
+
 
     }
 

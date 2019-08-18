@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -30,81 +30,105 @@
             android:maxLines="1" />
 
     </LinearLayout>
+
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:columnCount="4"
-        app:rowCount="4"
-        >
+        app:rowCount="4">
 
         <Button
+            android:id="@+id/btn1"
             style="@style/number_keyboard"
             android:text="1" />
 
         <Button
+            android:id="@+id/btn2"
             style="@style/number_keyboard"
             android:text="2" />
 
         <Button
+            android:id="@+id/btn3"
             style="@style/number_keyboard"
             android:text="3" />
 
         <Button
-            app:layout_gravity="fill"
+            android:id="@+id/btn_date"
             style="@style/number_keyboard"
-            android:text="今天" />
+            android:text="今天"
+            app:layout_gravity="fill" />
 
         <Button
+            android:id="@+id/btn4"
             style="@style/number_keyboard"
             android:text="4" />
 
         <Button
+            android:id="@+id/btn5"
             style="@style/number_keyboard"
             android:text="5" />
 
         <Button
+            android:id="@+id/btn6"
             style="@style/number_keyboard"
             android:text="6" />
 
         <Button
-            app:layout_gravity="fill"
+            android:id="@+id/btn_minus"
             style="@style/number_keyboard"
-            android:text="-" />
+            android:text="-"
+            app:layout_gravity="fill" />
 
         <Button
+            android:id="@+id/btn7"
             style="@style/number_keyboard"
             android:text="7" />
 
         <Button
+            android:id="@+id/btn8"
+
             style="@style/number_keyboard"
             android:text="8" />
 
         <Button
+            android:id="@+id/btn9"
+
             style="@style/number_keyboard"
             android:text="9" />
 
         <Button
-            app:layout_gravity="fill"
+            android:id="@+id/btn_add"
+
             style="@style/number_keyboard"
-            android:text="+" />
+            android:text="+"
+            app:layout_gravity="fill" />
 
         <Button
-            app:layout_gravity="fill"
+            android:id="@+id/btn_dec"
+
             style="@style/number_keyboard"
-            android:text="." />
+            android:text="."
+            app:layout_gravity="fill" />
 
         <Button
+            android:id="@+id/btn0"
+
             style="@style/number_keyboard"
             android:text="0" />
 
         <Button
+            android:id="@+id/btn_clean"
+
             style="@style/number_keyboard"
             android:text="清零" />
 
         <Button
-            app:layout_gravity="fill"
+            android:id="@+id/btn_submit"
+
             style="@style/number_keyboard"
-            android:text="OK" />
+            android:text="OK"
+            app:layout_gravity="fill" />
 
     </android.support.v7.widget.GridLayout>
+
 </LinearLayout>
