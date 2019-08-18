@@ -1,0 +1,7 @@
+<litepal>
+    <dbname value="default_book" />
+    <version value="1" />
+    <list>
+        <mapping class="com.xz.ska.entity.Book" />
+    </list>
+</litepal>

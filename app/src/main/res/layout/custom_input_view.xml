@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/remarks"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="备注"
+            android:maxLength="100"
+            android:maxLines="1" />
+
+        <EditText
+            android:id="@+id/money"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:focusable="false"
+            android:hint="金额"
+            android:maxLength="8"
+            android:maxLines="1" />
+
+    </LinearLayout>
+    <android.support.v7.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:columnCount="4"
+        app:rowCount="4"
+        >
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="1" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="2" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="3" />
+
+        <Button
+            app:layout_gravity="fill"
+            style="@style/number_keyboard"
+            android:text="今天" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="4" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="5" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="6" />
+
+        <Button
+            app:layout_gravity="fill"
+            style="@style/number_keyboard"
+            android:text="-" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="7" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="8" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="9" />
+
+        <Button
+            app:layout_gravity="fill"
+            style="@style/number_keyboard"
+            android:text="+" />
+
+        <Button
+            app:layout_gravity="fill"
+            style="@style/number_keyboard"
+            android:text="." />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="0" />
+
+        <Button
+            style="@style/number_keyboard"
+            android:text="清零" />
+
+        <Button
+            app:layout_gravity="fill"
+            style="@style/number_keyboard"
+            android:text="OK" />
+
+    </android.support.v7.widget.GridLayout>
+</LinearLayout>

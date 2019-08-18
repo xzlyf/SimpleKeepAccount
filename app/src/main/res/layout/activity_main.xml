@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,21 +7,39 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.xz.ska.custom.InfoTop
-        android:id="@+id/top_info"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
 
-    <com.xz.ska.custom.TipsView
-        android:id="@+id/tips_view"
-        android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.xz.ska.custom.InfoTop
+                android:id="@+id/top_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.xz.ska.custom.TipsView
+                android:id="@+id/tips_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hideIcon="true"
+                app:textTips="测试消息" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_money"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_data"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:hideIcon="true"
-        app:textTips="测试消息"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_money"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/dp_30"/>
+</RelativeLayout>

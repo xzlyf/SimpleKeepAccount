@@ -30,4 +30,10 @@
         <item name="android:maxEms">6</item>
         <item name="android:maxLines">1</item>
     </style>
+    <!--数字键盘-->
+    <style name="number_keyboard" parent="TextAppearance.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/select_btn</item>
+    </style>
 </resources>
