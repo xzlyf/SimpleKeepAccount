@@ -131,4 +131,16 @@
 
     </android.support.v7.widget.GridLayout>
 
+    <android.inputmethodservice.KeyboardView
+        android:id="@+id/activity_main_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#212121"
+        android:keyTextColor="#dddddd"
+        android:keyTextSize="18sp"
+        android:labelTextSize="18sp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp" />
+
+
 </LinearLayout>

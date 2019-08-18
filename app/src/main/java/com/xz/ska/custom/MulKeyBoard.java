@@ -70,6 +70,11 @@ public class MulKeyBoard extends LinearLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.btn1:
+
+                break;
+        }
 
     }
 }
