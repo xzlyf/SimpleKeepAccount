@@ -26,121 +26,25 @@
             android:layout_weight="1"
             android:focusable="false"
             android:hint="金额"
+            android:inputType="numberDecimal"
             android:maxLength="8"
             android:maxLines="1" />
 
     </LinearLayout>
 
-    <android.support.v7.widget.GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:columnCount="4"
-        app:rowCount="4">
-
-        <Button
-            android:id="@+id/btn1"
-            style="@style/number_keyboard"
-            android:text="1" />
-
-        <Button
-            android:id="@+id/btn2"
-            style="@style/number_keyboard"
-            android:text="2" />
-
-        <Button
-            android:id="@+id/btn3"
-            style="@style/number_keyboard"
-            android:text="3" />
-
-        <Button
-            android:id="@+id/btn_date"
-            style="@style/number_keyboard"
-            android:text="今天"
-            app:layout_gravity="fill" />
-
-        <Button
-            android:id="@+id/btn4"
-            style="@style/number_keyboard"
-            android:text="4" />
-
-        <Button
-            android:id="@+id/btn5"
-            style="@style/number_keyboard"
-            android:text="5" />
-
-        <Button
-            android:id="@+id/btn6"
-            style="@style/number_keyboard"
-            android:text="6" />
-
-        <Button
-            android:id="@+id/btn_minus"
-            style="@style/number_keyboard"
-            android:text="-"
-            app:layout_gravity="fill" />
-
-        <Button
-            android:id="@+id/btn7"
-            style="@style/number_keyboard"
-            android:text="7" />
-
-        <Button
-            android:id="@+id/btn8"
-
-            style="@style/number_keyboard"
-            android:text="8" />
-
-        <Button
-            android:id="@+id/btn9"
-
-            style="@style/number_keyboard"
-            android:text="9" />
-
-        <Button
-            android:id="@+id/btn_add"
-
-            style="@style/number_keyboard"
-            android:text="+"
-            app:layout_gravity="fill" />
-
-        <Button
-            android:id="@+id/btn_dec"
-
-            style="@style/number_keyboard"
-            android:text="."
-            app:layout_gravity="fill" />
-
-        <Button
-            android:id="@+id/btn0"
-
-            style="@style/number_keyboard"
-            android:text="0" />
-
-        <Button
-            android:id="@+id/btn_clean"
-
-            style="@style/number_keyboard"
-            android:text="清零" />
-
-        <Button
-            android:id="@+id/btn_submit"
-
-            style="@style/number_keyboard"
-            android:text="OK"
-            app:layout_gravity="fill" />
-
-    </android.support.v7.widget.GridLayout>
 
     <android.inputmethodservice.KeyboardView
-        android:id="@+id/activity_main_keyboard"
+        android:id="@+id/custom_keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#212121"
-        android:keyTextColor="#dddddd"
-        android:keyTextSize="18sp"
-        android:labelTextSize="18sp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp" />
+        android:background="#7d7d7d"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:keyBackground="@drawable/select_keycap"
+        android:keyPreviewLayout="@null"
+        android:keyTextColor="#000"
+        android:shadowColor="@android:color/white"
+        android:shadowRadius="0.0" />
 
 
 </LinearLayout>

@@ -79,14 +79,14 @@ public class AddActivity extends BaseActivity {
             @Override
             public void onClick(int i) {
 
-                if (kb_height == 0) {
-                    //获取虚拟键盘高度
-                    kb_height = findViewById(R.id.number_keyboard).getMeasuredHeight();
-                    ViewGroup.LayoutParams param = recyclerType.getLayoutParams();
-                    //用屏幕高度减去虚拟键盘高度等于recycler布局的高度
-                    param.height = sc_height-kb_height;
-                    recyclerType.setLayoutParams(param);
-                }
+//                if (kb_height == 0) {
+//                    //获取虚拟键盘高度
+//                    kb_height = findViewById(R.id.number_keyboard).getMeasuredHeight();
+//                    ViewGroup.LayoutParams param = recyclerType.getLayoutParams();
+//                    //用屏幕高度减去虚拟键盘高度等于recycler布局的高度
+//                    param.height = sc_height-kb_height;
+//                    recyclerType.setLayoutParams(param);
+//                }
 
 
             }
