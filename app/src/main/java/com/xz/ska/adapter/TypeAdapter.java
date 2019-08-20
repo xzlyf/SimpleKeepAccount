@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
 import com.xz.ska.utils.OnClickItemListener;
 
@@ -44,7 +45,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,23 +55,23 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
             }
         });
         switch (type.get(i)){
-            case 1:
+            case 0:
                 viewHolder.icon.setImageResource(R.drawable.id_gouwu);
                 viewHolder.name.setText("购物");
                 break;
-            case 2:
+            case 1:
                 viewHolder.icon.setImageResource(R.drawable.id_jiaotong);
                 viewHolder.name.setText("交通");
                 break;
-            case 3:
+            case 2:
                 viewHolder.icon.setImageResource(R.drawable.id_yinshi);
                 viewHolder.name.setText("饮食");
                 break;
-            case 4:
+            case 3:
                 viewHolder.icon.setImageResource(R.drawable.id_tongxun);
                 viewHolder.name.setText("通讯");
                 break;
-            case 5:
+            case 4:
                 viewHolder.icon.setImageResource(R.drawable.id_yule);
                 viewHolder.name.setText("娱乐");
                 break;

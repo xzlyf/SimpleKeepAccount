@@ -11,8 +11,10 @@ import android.view.Display;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.xz.com.log.LogUtil;
 import com.xz.ska.adapter.TypeAdapter;
 import com.xz.ska.base.BaseActivity;
+import com.xz.ska.custom.MulKeyBoardDialog;
 import com.xz.ska.utils.OnClickItemListener;
 import com.xz.ska.utils.SpacesItemDecorationVH;
 
@@ -44,11 +46,13 @@ public class AddActivity extends BaseActivity {
         recyclerType = findViewById(R.id.recycler_type);
 
     }
+    MulKeyBoardDialog dialog;
 
     @Override
     public void init_Data() {
         init_hardware();
         init_recycler();
+
 
     }
 
@@ -58,6 +62,7 @@ public class AddActivity extends BaseActivity {
         sc_height = outMetrics.heightPixels;
     }
 
+
     private void init_recycler() {
         recyclerType.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerType.addItemDecoration(new SpacesItemDecorationVH(10));
@@ -65,7 +70,7 @@ public class AddActivity extends BaseActivity {
         recyclerType.setAdapter(adapter);
 
         List<Integer> data = new ArrayList<>();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             data.add(i);
         }
         adapter.refresh(data);
@@ -75,18 +80,16 @@ public class AddActivity extends BaseActivity {
         adapter.refresh(data);
         adapter.refresh(data);
         adapter.refresh(data);
+
         adapter.setOnItemClickListener(new OnClickItemListener() {
             @Override
             public void onClick(int i) {
 
-//                if (kb_height == 0) {
-//                    //获取虚拟键盘高度
-//                    kb_height = findViewById(R.id.number_keyboard).getMeasuredHeight();
-//                    ViewGroup.LayoutParams param = recyclerType.getLayoutParams();
-//                    //用屏幕高度减去虚拟键盘高度等于recycler布局的高度
-//                    param.height = sc_height-kb_height;
-//                    recyclerType.setLayoutParams(param);
-//                }
+                dialog = new MulKeyBoardDialog(AddActivity.this, R.style.base_dialog);
+                dialog.create();
+                dialog.setIcon(i);
+                dialog.setTaskId(getTaskId());
+                dialog.show();
 
 
             }

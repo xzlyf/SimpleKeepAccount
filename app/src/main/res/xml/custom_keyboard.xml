@@ -1,7 +1,6 @@
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:keyWidth="25%p"
-    android:keyHeight="7%p"
-    >
+    android:keyWidth="20%p"
+    android:keyHeight="7%p">
     <Row>
         <Key
             android:codes="49"
@@ -12,9 +11,13 @@
         <Key
             android:codes="51"
             android:keyLabel="3" />
+
+        <!--android:isRepeatable="true" 长按重复操作-->
+
         <Key
-            android:codes="-1"
-            android:keyLabel="今天" />
+            android:codes="-5"
+            android:isRepeatable="true"
+            android:keyIcon="@drawable/ic_backspace_2" />
     </Row>
     <Row>
         <Key
@@ -27,8 +30,9 @@
             android:codes="54"
             android:keyLabel="6" />
         <Key
-            android:codes="-2"
-            android:keyLabel="+" />
+            android:codes="-4"
+            android:keyHeight="21%p"
+            android:keyLabel="ok" />
     </Row>
     <Row>
         <Key
@@ -40,9 +44,7 @@
         <Key
             android:codes="57"
             android:keyLabel="9" />
-        <Key
-            android:codes="-3"
-            android:keyLabel="-" />
+
     </Row>
     <Row>
         <Key
@@ -51,15 +53,9 @@
         <Key
             android:codes="48"
             android:keyLabel="0" />
-        <!--android:isRepeatable="true" 长按重复操作-->
 
         <Key
-            android:codes="-5"
-            android:isRepeatable="true"
-            android:keyIcon="@drawable/ic_backspace_2"
-            />
-        <Key
-            android:codes="-4"
-            android:keyLabel="ok" />
+            android:codes="-1"
+            android:keyLabel="今天" />
     </Row>
 </Keyboard>

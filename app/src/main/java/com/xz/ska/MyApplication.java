@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 
+import com.xz.com.log.LogConfig;
+
 import org.litepal.LitePalApplication;
 
 import java.util.ArrayList;
@@ -16,6 +18,16 @@ public class MyApplication extends LitePalApplication {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+
+        init_log();
+    }
+
+    private void init_log() {
+        LogConfig config = LogConfig.getInstance();
+        config.setShowLog(true);
+        config.setFlag("xz");
+
+
     }
 
     /**
