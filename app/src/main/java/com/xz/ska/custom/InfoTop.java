@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.xz.ska.AddActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
 
@@ -24,14 +25,14 @@ public class InfoTop extends FrameLayout {
 
     public InfoTop(Context context, AttributeSet attrs) {
         super(context, attrs);
-        view = View.inflate(context,R.layout.custom_info_top,this);
+        view = View.inflate(context, R.layout.custom_info_top, this);
         this.context = context;
         init();
     }
 
     public InfoTop(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        view = View.inflate(context,R.layout.custom_info_top,this);
+        view = View.inflate(context, R.layout.custom_info_top, this);
         this.context = context;
         init();
     }
@@ -42,6 +43,17 @@ public class InfoTop extends FrameLayout {
         zhichuText = view.findViewById(R.id.zhichu_text);
         dateChoose = view.findViewById(R.id.date_choose);
         todayMoneyText = view.findViewById(R.id.today_money_text);
+
+
+        dateChoose.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DateChooseDialog dialog = new DateChooseDialog(context, R.style.base_dialog);
+                dialog.create();
+                dialog.show();
+
+            }
+        });
 
     }
 

@@ -48,13 +48,24 @@
         style="@style/font_style"
         android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/today_money_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
-        style="@style/font_style"
-        android:text="-18.00"
-        android:textSize="24sp" />
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/font_style"
+            android:text="今日"/>
+        <TextView
+            android:id="@+id/today_money_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/font_style"
+            android:text="-18.00"
+            android:textSize="24sp" />
+    </LinearLayout>
 
 </FrameLayout>

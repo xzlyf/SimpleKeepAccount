@@ -1,6 +1,5 @@
 package com.xz.ska.custom;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,25 +9,24 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xz.com.log.LogUtil;
-import com.xz.ska.MyApplication;
+import com.xz.ska.MainActivity;
 import com.xz.ska.R;
-import com.xz.ska.constan.Local;
+import com.xz.ska.sql.LitePalUtil;
+import com.xz.ska.utils.TimeUtil;
 
 import java.math.BigDecimal;
+import java.util.regex.Pattern;
 
 public class MulKeyBoardDialog extends Dialog {
 
@@ -39,7 +37,10 @@ public class MulKeyBoardDialog extends Dialog {
     private EditText money;// 金额
     private EditText remarks;//备注
     private TextView wordCount;//字数
+    private TextView time;//时间
+    private TextView date;//日期
     private ImageView selectType;//选中的图标
+    private long timeStamp;//时间戳
 
     private final int DATE_SELECT = -1;
     private final int ADD = 43;
@@ -49,13 +50,13 @@ public class MulKeyBoardDialog extends Dialog {
 
     private EditText et;
 
-    //父类活动id，用于关闭父类
-    private int parenTaskId;
+    private boolean isSubmit = false;//是否提交
+    private int type;
+
 
     public void setEditable(EditText editable) {
         this.et = editable;
     }
-
 
 
     public MulKeyBoardDialog(@NonNull Context context, int themeResId) {
@@ -65,8 +66,9 @@ public class MulKeyBoardDialog extends Dialog {
 
     }
 
-    public void setIcon(int resId){
-        switch (resId){
+    public void setIcon(int type) {
+        this.type = type;
+        switch (type) {
             case 0:
                 selectType.setImageResource(R.drawable.id_gouwu);
 //                viewHolder.name.setText("购物");
@@ -90,10 +92,6 @@ public class MulKeyBoardDialog extends Dialog {
         }
     }
 
-    public void setTaskId(int id){
-        parenTaskId = id;
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +112,10 @@ public class MulKeyBoardDialog extends Dialog {
         remarks = findViewById(R.id.remarks);
         wordCount = findViewById(R.id.text_count);
         selectType = findViewById(R.id.select_type);
-
+        time = findViewById(R.id.time_text);
+        date = findViewById(R.id.date_text);
         setEditable(money);
+
 
         mNumberView.setKeyboard(mNumberKeyboard);
         mNumberView.setEnabled(true);
@@ -124,6 +124,9 @@ public class MulKeyBoardDialog extends Dialog {
 
         remarks.addTextChangedListener(textWatcher);
 
+        timeStamp = System.currentTimeMillis();//获取当前系统时间
+        date.setText(TimeUtil.getSimDate("yyyy年MM月dd日", timeStamp));
+        time.setText(TimeUtil.getSimDate("HH:mm", timeStamp));
 
     }
 
@@ -184,6 +187,7 @@ public class MulKeyBoardDialog extends Dialog {
                 }
             } else if (i == SUBMIT) {
 
+                submit();
 
             } else {
                 //都不是自定义的值就插入
@@ -219,7 +223,6 @@ public class MulKeyBoardDialog extends Dialog {
         }
     };
 
-
     /**
      * 备注框监听
      */
@@ -236,15 +239,69 @@ public class MulKeyBoardDialog extends Dialog {
 
         @Override
         public void afterTextChanged(Editable s) {
-            if (wordCount.getVisibility()==View.GONE){
+            if (wordCount.getVisibility() == View.GONE) {
                 wordCount.setVisibility(View.VISIBLE);
             }
-            if (remarks.length()==0){
+            if (remarks.length() == 0) {
                 wordCount.setVisibility(View.GONE);
             }
-            wordCount.setText(remarks.length()+"/100");
+            wordCount.setText(remarks.length() + "/100");
         }
     };
 
+    private void submit() {
+        double qm;
+        String remark;
+        try {
+            qm = Double.valueOf(et.getText().toString());
+            BigDecimal b = new BigDecimal(qm);
+            qm = b.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+
+            remark = remarks.getText().toString();
+        } catch (Exception e) {
+            Toast.makeText(mContext, "数值异常，请输入正确的数值", Toast.LENGTH_SHORT).show();
+            et.setText("");
+            return;
+        }
+        if (qm == 0) {
+            Toast.makeText(mContext, "该金额记不了帐哦", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        LogUtil.e(qm);
+        //保存到数据库
+        LitePalUtil.saveBook(timeStamp, qm, remark, type);
+        Toast.makeText(mContext, "记账成功", Toast.LENGTH_SHORT).show();
+        //回到首页
+        mContext.startActivity(new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    /**
+     * 是否整数
+     *
+     * @param str
+     * @return
+     */
+    private boolean isInteger(String str) {
+        if (null == str || "".equals(str)) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("^[-\\\\+]?[\\\\d]*$");
+        return pattern.matcher(str).matches();
+    }
+
+    /**
+     * 是否浮点数
+     *
+     * @param str
+     * @return
+     */
+    private boolean isDouble(String str) {
+        if (null == str || "".equals(str)) {
+            return false;
+        }
+        Pattern pattern = Pattern.compile("^[-\\+]?[.\\d]*$"); // 之前这里正则表达式错误，现更正
+        return pattern.matcher(str).matches();
+    }
 
 }

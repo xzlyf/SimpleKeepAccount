@@ -46,7 +46,7 @@ public class AddActivity extends BaseActivity {
         recyclerType = findViewById(R.id.recycler_type);
 
     }
-    MulKeyBoardDialog dialog;
+    private MulKeyBoardDialog dialog;
 
     @Override
     public void init_Data() {
@@ -88,7 +88,6 @@ public class AddActivity extends BaseActivity {
                 dialog = new MulKeyBoardDialog(AddActivity.this, R.style.base_dialog);
                 dialog.create();
                 dialog.setIcon(i);
-                dialog.setTaskId(getTaskId());
                 dialog.show();
 
 
@@ -97,9 +96,20 @@ public class AddActivity extends BaseActivity {
     }
 
 
+
+
     @Override
     public void showData(Object object) {
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (dialog!=null){
+            dialog.dismiss();
+        }
+        super.onDestroy();
 
     }
 

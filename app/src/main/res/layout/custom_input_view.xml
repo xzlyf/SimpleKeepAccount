@@ -3,21 +3,40 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:orientation="vertical">
+
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp_60"
         android:layout_marginBottom="@dimen/dp_100"
         app:cardCornerRadius="@dimen/dp_10">
+
         <ImageView
             android:id="@+id/select_type"
             android:layout_width="@dimen/dp_50"
             android:layout_height="@dimen/dp_50"
-            android:padding="@dimen/dp_8"
             android:background="@color/secondary_text"
+            android:padding="@dimen/dp_8"
             android:src="@drawable/id_gouwu" />
     </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:text="14:43"
+        android:textSize="@dimen/sp_18" />
+
+    <TextView
+        android:id="@+id/date_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_5"
+        android:text="2019年8月20日" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,10 +59,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:background="@null"
-                android:textColor="@color/secondary_text"
                 android:hint="备注"
                 android:maxLength="100"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:textColor="@color/secondary_text" />
 
             <TextView
                 android:id="@+id/text_count"
