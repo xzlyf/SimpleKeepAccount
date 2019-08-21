@@ -7,63 +7,76 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/zhichu_text"
+            style="@style/font_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/font_style"
             android:text="18.00"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
+
         <TextView
+            style="@style/font_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/font_style"
-            android:text="支出"/>
+            android:text="支出" />
+
         <TextView
             android:id="@+id/shouru_text"
+            style="@style/font_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            style="@style/font_style"
             android:text="0.00"
-            android:textSize="24sp"/>
+            android:textSize="24sp" />
+
         <TextView
+            style="@style/font_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/font_style"
-            android:text="收入"/>
+            android:text="收入" />
 
     </LinearLayout>
 
     <!--日期选择器-->
     <TextView
         android:id="@+id/date_choose"
+        style="@style/font_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="8月"
-        android:textSize="24sp"
-        style="@style/font_style"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:background="@drawable/selector_btn"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_5"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_5"
+        android:text="8月21日"
+        android:textSize="@dimen/sp_24" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|center"
         android:orientation="vertical">
+
         <TextView
+            style="@style/font_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            style="@style/font_style"
-            android:text="今日"/>
+            android:text="今日" />
+
         <TextView
             android:id="@+id/today_money_text"
+            style="@style/font_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/font_style"
             android:text="-18.00"
             android:textSize="24sp" />
     </LinearLayout>

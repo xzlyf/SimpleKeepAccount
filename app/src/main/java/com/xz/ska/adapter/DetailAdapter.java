@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
     }
 
     public void refresh(List<Book> newData) {
+        list.clear();
         list.addAll(newData);
         notifyDataSetChanged();
     }
@@ -54,7 +56,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
         return list.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnTouchListener {
         ImageView idTypeImg;
         TextView idTypeName;
         TextView remark;
@@ -68,6 +70,29 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
             remark = itemView.findViewById(R.id.remark);
             moneyText = itemView.findViewById(R.id.money_text);
 
+            itemView.setOnTouchListener(this);
+
+        }
+
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            switch (event.getAction()){
+                case MotionEvent.ACTION_DOWN:
+                    v.setScaleX(1.1f);
+                    v.setScaleY(1.1f);
+                    break;
+                case MotionEvent.ACTION_CANCEL:
+                    v.setScaleX(1.0f);
+                    v.setScaleY(1.0f);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    v.setScaleX(1.0f);
+                    v.setScaleY(1.0f);
+                    break;
+
+            }
+            return true;
         }
     }
 }
