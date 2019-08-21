@@ -1,5 +1,6 @@
 package com.xz.ska;
 
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.xz.com.log.LogUtil;
 import com.xz.ska.adapter.TypeAdapter;
@@ -17,20 +20,19 @@ import com.xz.ska.base.BaseActivity;
 import com.xz.ska.custom.MulKeyBoardDialog;
 import com.xz.ska.utils.OnClickItemListener;
 import com.xz.ska.utils.SpacesItemDecorationVH;
+import com.xz.ska.utils.TypeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddActivity extends BaseActivity {
+public class AddActivity extends BaseActivity implements View.OnClickListener {
 
 
     private RecyclerView recyclerType;
     private TypeAdapter adapter;
-
-    //虚假键盘高度
-    private int kb_height = 0;
-    //屏幕高度
-    private int sc_height = 0;
+    private TextView zhichuLayout;
+    private TextView shouruLayout;
+    private int state=0;//0支出  1收入
 
     @Override
     public int getLayoutResource() {
@@ -44,22 +46,21 @@ public class AddActivity extends BaseActivity {
 
     private void initView() {
         recyclerType = findViewById(R.id.recycler_type);
+        zhichuLayout = findViewById(R.id.zhichu_recycler);
+        shouruLayout = findViewById(R.id.shouru_recycler);
+
+        zhichuLayout.setOnClickListener(this);
+        shouruLayout.setOnClickListener(this);
 
     }
+
     private MulKeyBoardDialog dialog;
 
     @Override
     public void init_Data() {
-        init_hardware();
         init_recycler();
-
-
-    }
-
-    private void init_hardware() {
-        DisplayMetrics outMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(outMetrics);
-        sc_height = outMetrics.heightPixels;
+        setSelect(zhichuLayout,true);
+        setSelect(shouruLayout,false);
     }
 
 
@@ -70,15 +71,9 @@ public class AddActivity extends BaseActivity {
         recyclerType.setAdapter(adapter);
 
         List<Integer> data = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < TypeUtil.getLength(); i++) {
             data.add(i);
         }
-        adapter.refresh(data);
-        adapter.refresh(data);
-        adapter.refresh(data);
-        adapter.refresh(data);
-        adapter.refresh(data);
-        adapter.refresh(data);
         adapter.refresh(data);
 
         adapter.setOnItemClickListener(new OnClickItemListener() {
@@ -96,8 +91,6 @@ public class AddActivity extends BaseActivity {
     }
 
 
-
-
     @Override
     public void showData(Object object) {
 
@@ -106,7 +99,7 @@ public class AddActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        if (dialog!=null){
+        if (dialog != null) {
             dialog.dismiss();
         }
         super.onDestroy();
@@ -114,4 +107,28 @@ public class AddActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.zhichu_recycler:
+                state = 0;
+                setSelect(zhichuLayout,true);
+                setSelect(shouruLayout,false);
+                break;
+            case R.id.shouru_recycler:
+                state = 1;
+                setSelect(shouruLayout,true);
+                setSelect(zhichuLayout,false);
+                break;
+        }
+    }
+    private void setSelect(TextView view,boolean b){
+        if (b){
+            view.setScaleX(1.3f);
+            view.setScaleY(1.3f);
+        }else{
+            view.setScaleX(1.0f);
+            view.setScaleY(1.0f);
+        }
+    }
 }

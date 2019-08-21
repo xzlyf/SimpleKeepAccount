@@ -3,34 +3,31 @@ package com.xz.ska;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import com.xz.com.log.LogUtil;
-import com.xz.com.log.utils.Date;
-import com.xz.ska.adapter.DetailAdapter;
+import com.xz.ska.adapter.NewDetailAdapter;
 import com.xz.ska.base.BaseActivity;
-import com.xz.ska.constan.Local;
 import com.xz.ska.custom.InfoTop;
+import com.xz.ska.custom.SideRecyclerView;
 import com.xz.ska.custom.TipsView;
-import com.xz.ska.entity.Book;
 import com.xz.ska.entity.TopInfo;
-import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.DatePickerUtil;
+import com.xz.ska.utils.TypeUtil;
+import com.xz.ska.utils.UpdateListener;
 import com.xz.ska.utils.SpacesItemDecorationVertical;
 import com.xz.ska.utils.TimeUtil;
 
-import java.sql.Time;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
     private InfoTop topInfo;
-    private RecyclerView recyclerMoney;
-    private DetailAdapter adapter;
+    private SideRecyclerView recyclerMoney;
+    private NewDetailAdapter adapter;
     private TipsView tipsView;
     private ImageView empty;
     private android.support.design.widget.FloatingActionButton addData;
@@ -61,6 +58,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         topInfo.setDateChoose(DatePickerUtil.getMonth() + 1 + "", +DatePickerUtil.getDay() + "");
         tipsView.setTips("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈0我是提示哈哈哈哈哈哈哈哈");
 
+        TypeUtil.initType(this);
+
         init_Recycler();
 
         //日期选择器
@@ -86,10 +85,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void init_Recycler() {
         recyclerMoney.setLayoutManager(new LinearLayoutManager(this));
         recyclerMoney.addItemDecoration(new SpacesItemDecorationVertical(10));
-        adapter = new DetailAdapter(this);
+        adapter = new NewDetailAdapter(this);
         recyclerMoney.setAdapter(adapter);
 
         presenter.getDetailData();//获取本地数据
+
+        //空提示
+        adapter.setUpdateListener(new UpdateListener() {
+            @Override
+            public void update(long time) {
+                presenter.getDetailData(time);
+            }
+        });
     }
 
     @Override

@@ -16,6 +16,15 @@
         <item name="android:windowLightStatusBar">false</item><!--黑色状态栏-->
         <item name="android:statusBarColor">@color/colorPrimary</item><!--状态栏透明色-->
     </style>
+    <!--addActivity-->
+    <style name="addActivity_theme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item><!--黑色状态栏-->
+        <item name="android:statusBarColor">@color/transparent</item><!--状态栏透明色-->
+    </style>
     <!--全屏样式-->
     <style name="full_screen" parent="@style/Theme.AppCompat.Light">
         <item name="android:windowNoTitle">true</item>
@@ -44,5 +53,18 @@
         <item name="android:windowNoTitle">true</item><!--无标题-->
         <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
         <item name="android:backgroundDimEnabled">true</item><!--模糊-->
+    </style>
+    <!--支出收入标题样式-->
+    <style name="title_fenpei" parent="Widget.AppCompat.AutoCompleteTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/selector_btn</item>
+        <item name="android:padding">@dimen/dp_5</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+
+        <item name="android:focusableInTouchMode">false</item>
     </style>
 </resources>

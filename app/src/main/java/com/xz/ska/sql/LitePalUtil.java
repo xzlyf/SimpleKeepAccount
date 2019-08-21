@@ -45,16 +45,12 @@ public class LitePalUtil {
     /**
      * delete====================================
      *
-     * @param c
      * @param timeStamp
      */
-    public static void deleteBook(Class<Book> c, long timeStamp) {
-        DataSupport.deleteAll(c, "timestamp = ?", timeStamp + "");
+    public static void deleteBook(long timeStamp) {
+        DataSupport.deleteAll(Book.class, "timestamp = ?", timeStamp + "");
     }
 
-    public static void delete(Class<?> c, String... param) {
-        DataSupport.deleteAll(c, param);
-    }
 
     /**
      * query=======================================

@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
 import com.xz.ska.utils.OnClickItemListener;
+import com.xz.ska.utils.TypeUtil;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,28 +56,8 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
                 }
             }
         });
-        switch (type.get(i)){
-            case 0:
-                viewHolder.icon.setImageResource(R.drawable.id_gouwu);
-                viewHolder.name.setText("购物");
-                break;
-            case 1:
-                viewHolder.icon.setImageResource(R.drawable.id_jiaotong);
-                viewHolder.name.setText("交通");
-                break;
-            case 2:
-                viewHolder.icon.setImageResource(R.drawable.id_yinshi);
-                viewHolder.name.setText("饮食");
-                break;
-            case 3:
-                viewHolder.icon.setImageResource(R.drawable.id_tongxun);
-                viewHolder.name.setText("通讯");
-                break;
-            case 4:
-                viewHolder.icon.setImageResource(R.drawable.id_yule);
-                viewHolder.name.setText("娱乐");
-                break;
-        }
+        viewHolder.icon.setImageResource(TypeUtil.getIcon(i));
+        viewHolder.name.setText(TypeUtil.getName(i));
     }
 
     @Override

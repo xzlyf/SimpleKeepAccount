@@ -24,6 +24,7 @@ import com.xz.ska.MainActivity;
 import com.xz.ska.R;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.TimeUtil;
+import com.xz.ska.utils.TypeUtil;
 
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
@@ -61,35 +62,15 @@ public class MulKeyBoardDialog extends Dialog {
 
     public MulKeyBoardDialog(@NonNull Context context, int themeResId) {
         super(context, themeResId);
-
         mContext = context;
+
 
     }
 
     public void setIcon(int type) {
         this.type = type;
-        switch (type) {
-            case 0:
-                selectType.setImageResource(R.drawable.id_gouwu);
-//                viewHolder.name.setText("购物");
-                break;
-            case 1:
-                selectType.setImageResource(R.drawable.id_jiaotong);
-//                viewHolder.name.setText("交通");
-                break;
-            case 2:
-                selectType.setImageResource(R.drawable.id_yinshi);
-//                viewHolder.name.setText("饮食");
-                break;
-            case 3:
-                selectType.setImageResource(R.drawable.id_tongxun);
-//                viewHolder.name.setText("通讯");
-                break;
-            case 4:
-                selectType.setImageResource(R.drawable.id_yule);
-//                viewHolder.name.setText("娱乐");
-                break;
-        }
+        selectType.setImageResource(TypeUtil.getIcon(type));
+
     }
 
 
@@ -268,7 +249,6 @@ public class MulKeyBoardDialog extends Dialog {
             return;
         }
 
-        LogUtil.e(qm);
         //保存到数据库
         LitePalUtil.saveBook(timeStamp, qm, remark, type);
         Toast.makeText(mContext, "记账成功", Toast.LENGTH_SHORT).show();

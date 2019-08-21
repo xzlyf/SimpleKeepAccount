@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="name">
+        <item>购物</item>
+        <item>交通</item>
+        <item>饮食</item>
+        <item>通讯</item>
+        <item>娱乐</item>
+        <item>办公</item>
+        <item>宠物</item>
+        <item>服装</item>
+        <item>快递</item>
+        <item>零食</item>
+        <item>礼金</item>
+        <item>书籍</item>
+        <item>数码</item>
+        <item>医疗</item>
+        <item>运动</item>
+    </string-array>
+    <array name="icon">
+        <item>@drawable/id_gouwu</item>
+        <item>@drawable/id_jiaotong</item>
+        <item>@drawable/id_yinshi</item>
+        <item>@drawable/id_tongxun</item>
+        <item>@drawable/id_yule</item>
+        <item>@drawable/id_bangong</item>
+        <item>@drawable/id_chongwu</item>
+        <item>@drawable/id_fuzhuang</item>
+        <item>@drawable/id_kuaidi</item>
+        <item>@drawable/id_lingshi</item>
+        <item>@drawable/id_lijing</item>
+        <item>@drawable/id_shuji</item>
+        <item>@drawable/id_shuma</item>
+        <item>@drawable/id_yiliao</item>
+        <item>@drawable/id_yundong</item>
+    </array>
+
+    <array name="color">
+        <item>#f6e58d</item>
+        <item>#ffbe76</item>
+        <item>#ff7979</item>
+        <item>#badc58</item>
+        <item>#badc58</item>
+        <item>#f9ca24</item>
+        <item>#f0932b</item>
+        <item>#eb4d4b</item>
+        <item>#6ab04c</item>
+        <item>#7ed6df</item>
+        <item>#e056fd</item>
+        <item>#686de0</item>
+        <item>#30336b</item>
+        <item>#22a6b3</item>
+        <item>#be2edd</item>
+        <item>#4834d4</item>
+        <item>#130f40</item>
+    </array>
+</resources>
