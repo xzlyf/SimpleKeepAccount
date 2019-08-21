@@ -11,6 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/background_yuanjiao"
             android:orientation="horizontal">
 
             <FrameLayout
@@ -18,7 +19,6 @@
                 android:layout_height="@dimen/dp_40"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/background_yuanjiao_left"
-
                 android:padding="@dimen/dp_5">
 
                 <ImageView
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="@dimen/dp_12"
+                android:paddingStart="@dimen/dp_12"
                 android:orientation="vertical">
 
                 <TextView

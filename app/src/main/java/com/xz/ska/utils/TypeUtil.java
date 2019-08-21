@@ -38,7 +38,7 @@ public class TypeUtil {
 
     public static int getIcon(int i) {
         try {
-            return iconArry.getResourceId(i, R.drawable.empty_tips);
+            return iconArry.getResourceId(i, R.drawable.empty_tips_2);
         } catch (Exception e) {
             //不知为何有一定概率会出错
             return 0;

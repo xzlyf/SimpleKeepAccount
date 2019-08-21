@@ -16,6 +16,13 @@
         <item>数码</item>
         <item>医疗</item>
         <item>运动</item>
+        <item>彩票</item>
+        <item>旅游</item>
+        <item>零花钱</item>
+        <item>日用品</item>
+        <item>水电</item>
+        <item>维修</item>
+        <item>学习</item>
     </string-array>
     <array name="icon">
         <item>@drawable/id_gouwu</item>
@@ -33,6 +40,13 @@
         <item>@drawable/id_shuma</item>
         <item>@drawable/id_yiliao</item>
         <item>@drawable/id_yundong</item>
+        <item>@drawable/id_caipiao</item>
+        <item>@drawable/id_lvyou</item>
+        <item>@drawable/id_linhuaqian</item>
+        <item>@drawable/id_riyonpin</item>
+        <item>@drawable/id_shuidian</item>
+        <item>@drawable/id_weixiu</item>
+        <item>@drawable/id_xuexi</item>
     </array>
 
     <array name="color">

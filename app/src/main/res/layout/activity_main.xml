@@ -45,7 +45,7 @@
                 android:layout_height="@dimen/dp_150"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dp_100"
-                android:src="@drawable/empty_tips"
+                android:src="@drawable/empty_tips_2"
                 android:visibility="gone" />
 
         </LinearLayout>
