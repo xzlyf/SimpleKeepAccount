@@ -11,37 +11,7 @@ import java.util.Date;
  * 时间工具类
  */
 public class TimeUtil {
-    /**
-     * @return true 今天-数据不用更新  false 昨天-数据要更新
-     */
-    private static boolean isToday(long serverTime, long localTime) {
-        //服务器时间
-        Calendar cal = Calendar.getInstance();
-        Date cal_date = new Date(serverTime);
-        cal.setTime(cal_date);
-        int today = cal.get(Calendar.DAY_OF_YEAR);
-        System.out.println(today);
 
-        //本地储存的时间
-        Calendar local = Calendar.getInstance();
-        Date local_date = new Date(localTime);
-        local.setTime(local_date);
-        int lt = local.get(Calendar.DAY_OF_YEAR);
-        System.out.println(lt);
-
-        if (today > lt) {
-            //防止换年shift最后一天与第一的时间大小的问题
-            //保证当前时间一定大于本地时间才返回false
-            if (serverTime > localTime) {
-                return false;
-            } else {
-                return true;
-            }
-        } else {
-            return true;
-        }
-
-    }
 
     /**
      * 时间戳→自定义格式时间
@@ -72,9 +42,10 @@ public class TimeUtil {
 
     /**
      * 获取startdate和enddate
-     *
+     * <p>
      * [0] startdate
      * [1] enddate
+     *
      * @param s
      * @return
      */
@@ -82,12 +53,63 @@ public class TimeUtil {
         String startdate = getSimDate("yyyy-MM-dd", s) + " 00:00:00";
         String enddate = getSimDate("yyy-MM-dd", s) + " 23:59:59";
 
-        startdate = getStringToDate(startdate,"yyyy-MM-dd HH:mm:ss")+"";
-        enddate = getStringToDate(enddate,"yyyy-MM-dd HH:mm:ss")+"";
+        startdate = getStringToDate(startdate, "yyyy-MM-dd HH:mm:ss") + "";
+        enddate = getStringToDate(enddate, "yyyy-MM-dd HH:mm:ss") + "";
+        return new String[]{startdate, enddate};
+    }
 
+    /**
+     * 获取startdate 和enddate
+     * 2.0
+     *  [0]天start
+     *  [1]天end
+     *  [2]月start
+     *  [3]月end
+     */
+    public static long[] getStartAndEndDateV2(long time) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(time);
+        int maxday = TimeUtil.getMaxDayByMonth(time);
+        int minday = TimeUtil.getMinDayByMonth(time);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        long day_startdate = calendar.getTimeInMillis();
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        long day_enddate = calendar.getTimeInMillis();
+        calendar.set(Calendar.DAY_OF_MONTH, minday);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        long month_startdate = calendar.getTimeInMillis();
+        calendar.set(Calendar.DAY_OF_MONTH, maxday);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        long month_enddate = calendar.getTimeInMillis();
 
-//        LogUtil.e(startdate+"::::"+enddate);
+        return new long[]{day_startdate, day_enddate, month_startdate, month_enddate};
+    }
 
-        return new String[]{startdate,enddate};
+    /**
+     * 获取一个月最大的天数
+     */
+    public static int getMaxDayByMonth(long time) {
+        Calendar cal = Calendar.getInstance();
+//        cal.set(year, month - 1, 1);
+        cal.setTimeInMillis(time);
+        return cal.getActualMaximum(Calendar.DATE);
+    }
+
+    /**
+     * 获取一个月最大的天数
+     */
+    public static int getMinDayByMonth(long time) {
+        Calendar cal = Calendar.getInstance();
+//        cal.set(year, month - 1, 1);
+        cal.setTimeInMillis(time);
+        return cal.getActualMinimum(Calendar.DATE);
     }
 }

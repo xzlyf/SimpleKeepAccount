@@ -1,26 +1,19 @@
 package com.xz.ska;
 
-import android.graphics.Paint;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Display;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xz.com.log.LogUtil;
 import com.xz.ska.adapter.TypeAdapter;
 import com.xz.ska.base.BaseActivity;
+import com.xz.ska.constan.Local;
+import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.custom.MulKeyBoardDialog;
 import com.xz.ska.utils.OnClickItemListener;
 import com.xz.ska.utils.SpacesItemDecorationVH;
-import com.xz.ska.utils.TypeUtil;
+import com.xz.ska.constan.TypeZhichu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +25,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
     private TypeAdapter adapter;
     private TextView zhichuLayout;
     private TextView shouruLayout;
-    private int state=0;//0支出  1收入
+    private ImageView back;
 
     @Override
     public int getLayoutResource() {
@@ -48,7 +41,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
         recyclerType = findViewById(R.id.recycler_type);
         zhichuLayout = findViewById(R.id.zhichu_recycler);
         shouruLayout = findViewById(R.id.shouru_recycler);
-
+        back = findViewById(R.id.back);
+        back.setOnClickListener(this);
         zhichuLayout.setOnClickListener(this);
         shouruLayout.setOnClickListener(this);
 
@@ -59,8 +53,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void init_Data() {
         init_recycler();
-        setSelect(zhichuLayout,true);
-        setSelect(shouruLayout,false);
+        setSelect(zhichuLayout, true);
+        setSelect(shouruLayout, false);
     }
 
 
@@ -70,11 +64,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
         adapter = new TypeAdapter(this);
         recyclerType.setAdapter(adapter);
 
-        List<Integer> data = new ArrayList<>();
-        for (int i = 0; i < TypeUtil.getLength(); i++) {
-            data.add(i);
-        }
-        adapter.refresh(data);
+        Local.state=0;//还原
+        getZhichuList();
 
         adapter.setOnItemClickListener(new OnClickItemListener() {
             @Override
@@ -109,26 +100,58 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.zhichu_recycler:
-                state = 0;
-                setSelect(zhichuLayout,true);
-                setSelect(shouruLayout,false);
+                if (Local.state != 0) {
+                    Local.state = 0;
+                    setSelect(zhichuLayout, true);
+                    setSelect(shouruLayout, false);
+                    getZhichuList();
+                }
                 break;
             case R.id.shouru_recycler:
-                state = 1;
-                setSelect(shouruLayout,true);
-                setSelect(zhichuLayout,false);
+                if (Local.state != 1) {
+                    Local.state = 1;
+                    setSelect(shouruLayout, true);
+                    setSelect(zhichuLayout, false);
+                    getShouruList();
+                }
+                break;
+            case R.id.back:
+                finish();
                 break;
         }
     }
-    private void setSelect(TextView view,boolean b){
-        if (b){
+
+    private void setSelect(TextView view, boolean b) {
+        if (b) {
             view.setScaleX(1.3f);
             view.setScaleY(1.3f);
-        }else{
+        } else {
             view.setScaleX(1.0f);
             view.setScaleY(1.0f);
         }
+    }
+
+    /**
+     * 支出Recycler的数据
+     */
+    private void getZhichuList() {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < TypeZhichu.getLength(); i++) {
+            data.add(i);
+        }
+        adapter.refresh(data);
+    }
+
+    /**
+     * 收入recycler的数据
+     */
+    private void getShouruList() {
+        List<Integer> data = new ArrayList<>();
+        for (int i = 0; i < TypeShouru.getLength(); i++) {
+            data.add(i);
+        }
+        adapter.refresh(data);
     }
 }

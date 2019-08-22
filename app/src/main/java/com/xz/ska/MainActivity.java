@@ -8,14 +8,15 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import com.xz.com.log.LogUtil;
-import com.xz.ska.adapter.NewDetailAdapter;
+import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
+import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.custom.InfoTop;
 import com.xz.ska.custom.SideRecyclerView;
 import com.xz.ska.custom.TipsView;
 import com.xz.ska.entity.TopInfo;
 import com.xz.ska.utils.DatePickerUtil;
-import com.xz.ska.utils.TypeUtil;
+import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.utils.UpdateListener;
 import com.xz.ska.utils.SpacesItemDecorationVertical;
 import com.xz.ska.utils.TimeUtil;
@@ -27,7 +28,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private InfoTop topInfo;
     private SideRecyclerView recyclerMoney;
-    private NewDetailAdapter adapter;
+    private NewZhipeiAdapter adapter;
     private TipsView tipsView;
     private ImageView empty;
     private android.support.design.widget.FloatingActionButton addData;
@@ -58,7 +59,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         topInfo.setDateChoose(DatePickerUtil.getMonth() + 1 + "", +DatePickerUtil.getDay() + "");
         tipsView.setTips("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈0我是提示哈哈哈哈哈哈哈哈");
 
-        TypeUtil.initType(this);
+        TypeZhichu.initType(this);
+        TypeShouru.initType(this);
 
         init_Recycler();
 
@@ -85,12 +87,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void init_Recycler() {
         recyclerMoney.setLayoutManager(new LinearLayoutManager(this));
         recyclerMoney.addItemDecoration(new SpacesItemDecorationVertical(10));
-        adapter = new NewDetailAdapter(this);
+        adapter = new NewZhipeiAdapter(this);
         recyclerMoney.setAdapter(adapter);
 
-        presenter.getDetailData();//获取本地数据
+        presenter.getDetailData(System.currentTimeMillis());//获取本地数据 今天的数据
 
-        //空提示
         adapter.setUpdateListener(new UpdateListener() {
             @Override
             public void update(long time) {
@@ -114,6 +115,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         } else if (object instanceof TopInfo) {
             topInfo.setTodayText(((TopInfo) object).getRi_zhipei() + "");
+            topInfo.setZhiChu(((TopInfo) object).getYue_zhichu()+"");
+            topInfo.setShouRu(((TopInfo) object).getYue_shouru()+"");
             //待完成-本月的收入与支出
         }
     }

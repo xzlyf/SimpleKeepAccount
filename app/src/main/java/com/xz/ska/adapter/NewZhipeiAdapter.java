@@ -1,6 +1,9 @@
 package com.xz.ska.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xz.com.log.LogUtil;
+import com.xz.ska.DetailActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
-import com.xz.ska.utils.TypeUtil;
+import com.xz.ska.constan.TypeShouru;
+import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.UpdateListener;
@@ -22,12 +27,12 @@ import com.xz.ska.utils.UpdateListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewDetailAdapter extends RecyclerView.Adapter<NewDetailAdapter.SlideViewHolder> {
+public class NewZhipeiAdapter extends RecyclerView.Adapter<NewZhipeiAdapter.SlideViewHolder> {
     private final Context context;
     private List<Book> list;
     private UpdateListener listener;
 
-    public NewDetailAdapter(Context context) {
+    public NewZhipeiAdapter(Context context) {
         this.context = context;
         list = new ArrayList<>();
     }
@@ -46,35 +51,68 @@ public class NewDetailAdapter extends RecyclerView.Adapter<NewDetailAdapter.Slid
 
     @NonNull
     @Override
-    public NewDetailAdapter.SlideViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public NewZhipeiAdapter.SlideViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.item_zhipei_new, viewGroup, false);
         return new SlideViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewDetailAdapter.SlideViewHolder viewHolder, final int i) {
-        if (!viewHolder.tvDelete.hasOnClickListeners()) {
-            viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    LogUtil.w("删除" + list.get(i).getMoney());
-                    long time = list.get(i).getTimeStamp();
-                    //在数据库删除
-                    LitePalUtil.deleteBook(time);
-                    //重新刷新本地数据
-                    listener.update(time);
+    public void onBindViewHolder(@NonNull NewZhipeiAdapter.SlideViewHolder viewHolder, final int i) {
+        LogUtil.e(i);
+
+        final Book book = list.get(i);
+
+        viewHolder.tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(context, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+                dialog.create();
+                dialog.setTitle("是否删除");
+                dialog.setNegativeButton("是", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        LogUtil.w("删除" + book.getMoney());
+                        long time = book.getTimeStamp();
+                        //在数据库删除
+                        LitePalUtil.deleteBook(time);
+                        //重新刷新本地数据
+                        listener.update(time);
+                        Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialog.setPositiveButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+
+                    }
+                });
+                dialog.show();
 
 
-                    Toast.makeText(context, "删除成功", Toast.LENGTH_SHORT).show();
+            }
+        });
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                    context.startActivity(new Intent(context, DetailActivity.class).putExtra("book",book));
 
-                }
-            });
+            }
+        });
+        if (list.get(i).getState() == 0) {
+            viewHolder.idTypeImg.setImageResource(TypeZhichu.getIcon(book.getType()));
+            viewHolder.idTypeName.setText(TypeZhichu.getName(book.getType()));
+            viewHolder.moneyText.setText("-" + book.getMoney() + Local.moneySymbol);
+
+        } else {
+            viewHolder.idTypeImg.setImageResource(TypeShouru.getIcon(book.getType()));
+            viewHolder.idTypeName.setText(TypeShouru.getName(book.getType()));
+            viewHolder.moneyText.setText(book.getMoney() + Local.moneySymbol);
+
         }
-        viewHolder.idTypeImg.setImageResource(TypeUtil.getIcon(list.get(i).getType()));
-        viewHolder.idTypeName.setText(TypeUtil.getName(list.get(i).getType()));
-        viewHolder.moneyText.setText("-"+list.get(i).getMoney() + Local.moneySymbol);
+
         if (list.get(i).getRemarks().equals("")) {
             viewHolder.remark.setVisibility(View.GONE);
         } else {
@@ -102,6 +140,7 @@ public class NewDetailAdapter extends RecyclerView.Adapter<NewDetailAdapter.Slid
             moneyText = itemView.findViewById(R.id.money_text);
             tvDelete = itemView.findViewById(R.id.tv_delete);
 
+
         }
 
         @Override
@@ -124,5 +163,6 @@ public class NewDetailAdapter extends RecyclerView.Adapter<NewDetailAdapter.Slid
             }
             return true;
         }
+
     }
 }

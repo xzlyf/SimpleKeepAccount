@@ -1,4 +1,4 @@
-package com.xz.ska.utils;
+package com.xz.ska.constan;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -6,32 +6,28 @@ import android.content.res.TypedArray;
 
 import com.xz.ska.R;
 
-import java.util.Random;
-
-public class TypeUtil {
+public class TypeShouru {
     private Context context;
     private static TypedArray iconArry;//图片资源文件数组
     private static TypedArray colorArry;//颜色数组
     private static String[] name;
     private static Resources res;
-    private static Random random;
 
-    private static TypeUtil typeUtil;
+    private static TypeShouru typeUtil;
 
-    private TypeUtil(Context context) {
+    private TypeShouru(Context context) {
         this.context = context;
         res = context.getResources();
-        name = res.getStringArray(R.array.name);
-        iconArry = res.obtainTypedArray(R.array.icon);
+        name = res.getStringArray(R.array.shouru_name);
+        iconArry = res.obtainTypedArray(R.array.shouru_icon);
         colorArry = res.obtainTypedArray(R.array.color);
-        random = new Random();
     }
 
 
     //程序启动时初始化
-    public static TypeUtil initType(Context context) {
+    public static TypeShouru initType(Context context) {
         if (typeUtil == null) {
-            return new TypeUtil(context);
+            return new TypeShouru(context);
         }
         return typeUtil;
     }
@@ -54,10 +50,7 @@ public class TypeUtil {
         }
     }
 
-    public static int getRandomColor() {
 
-        return 0;
-    }
 
     public static int getLength() {
         return iconArry.length();

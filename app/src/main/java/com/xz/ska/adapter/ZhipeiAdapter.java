@@ -17,11 +17,11 @@ import com.xz.ska.entity.Book;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder> {
+public class ZhipeiAdapter extends RecyclerView.Adapter<ZhipeiAdapter.ViewHolder> {
     private final Context context;
     private List<Book> list;
 
-    public DetailAdapter(Context context) {
+    public ZhipeiAdapter(Context context) {
         this.context = context;
         list = new ArrayList<>();
     }

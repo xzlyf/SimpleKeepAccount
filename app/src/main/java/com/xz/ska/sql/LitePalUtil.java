@@ -19,12 +19,13 @@ public class LitePalUtil {
      * @param remarks
      * @param type
      */
-    public static void saveBook(long timeStamp, double money, String remarks, int type) {
+    public static void saveBook(long timeStamp, double money, String remarks, int type,int state) {
         Book book = new Book();
         book.setTimeStamp(timeStamp);
         book.setMoney(money);
         book.setRemarks(remarks);
         book.setType(type);
+        book.setState(state);
         book.save();
     }
 
@@ -68,7 +69,7 @@ public class LitePalUtil {
      * @param end
      * @return
      */
-    public static List<Book> queryBookDATE(String start, String end) {
+    public static List<Book> queryBookDATE(long start, long end) {
         Cursor cursor = DataSupport.findBySQL("SELECT * FROM Book WHERE  timestamp BETWEEN " + start + " AND " + end);
         int length = cursor.getCount();
 
@@ -78,6 +79,7 @@ public class LitePalUtil {
             book.setMoney(cursor.getDouble(cursor.getColumnIndex("money")));
             book.setRemarks(cursor.getString(cursor.getColumnIndex("remarks")));
             book.setTimeStamp(cursor.getLong(cursor.getColumnIndex("timestamp")));
+            book.setState(cursor.getInt(cursor.getColumnIndex("state")));
             book.setType(cursor.getInt(cursor.getColumnIndex("type")));
             list.add(book);
         }

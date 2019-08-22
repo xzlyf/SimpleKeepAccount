@@ -14,8 +14,10 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".AddActivity"
-            android:theme="@style/addActivity_theme"/>
+        <activity android:name=".DetailActivity"></activity>
+        <activity
+            android:name=".AddActivity"
+            android:theme="@style/addActivity_theme" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

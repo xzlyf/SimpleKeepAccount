@@ -1,12 +1,8 @@
 package com.xz.ska.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.drawable.Icon;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,16 +10,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
+import com.xz.ska.constan.Local;
+import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.utils.OnClickItemListener;
-import com.xz.ska.utils.TypeUtil;
+import com.xz.ska.constan.TypeZhichu;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
     private Context context;
@@ -34,6 +28,7 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
         type = new ArrayList<>();
     }
     public void refresh(List<Integer> type){
+        this.type.clear();
         this.type.addAll(type);
         notifyDataSetChanged();
     }
@@ -56,8 +51,16 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
                 }
             }
         });
-        viewHolder.icon.setImageResource(TypeUtil.getIcon(i));
-        viewHolder.name.setText(TypeUtil.getName(i));
+        if (Local.state == 0){
+            viewHolder.icon.setImageResource(TypeZhichu.getIcon(i));
+            viewHolder.name.setText(TypeZhichu.getName(i));
+
+        }else{
+            viewHolder.icon.setImageResource(TypeShouru.getIcon(i));
+            viewHolder.name.setText(TypeShouru.getName(i));
+
+
+        }
     }
 
     @Override

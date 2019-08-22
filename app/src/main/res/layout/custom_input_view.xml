@@ -5,15 +5,23 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
-
+    <ImageView
+        android:id="@+id/back"
+        android:src="@drawable/ic_back"
+        android:layout_width="@dimen/dp_30"
+        android:layout_height="@dimen/dp_30"
+        android:background="@drawable/selector_btn"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/dp_5"
+        android:layout_margin="@dimen/dp_15"/>
     <android.support.v7.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/dp_60"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_marginBottom="@dimen/dp_100"
         app:cardCornerRadius="@dimen/dp_10">
-
         <ImageView
             android:id="@+id/select_type"
             android:layout_width="@dimen/dp_50"
@@ -85,7 +93,7 @@
             android:gravity="center"
             android:hint="金额"
             android:inputType="numberDecimal"
-            android:maxLength="8"
+            android:maxLength="6"
             android:maxLines="1"
             android:textSize="@dimen/sp_18" />
 

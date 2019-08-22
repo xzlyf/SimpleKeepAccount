@@ -2,11 +2,22 @@ package com.xz.ska.entity;
 
 import org.litepal.crud.DataSupport;
 
-public class Book extends DataSupport {
+import java.io.Serializable;
+
+public class Book extends DataSupport implements Serializable {
     private long timeStamp;//时间戳
     private double money;//钱 正数-收入 负数-支出
     private String remarks;//备注
     private int type;//类型
+    private int state;// 0 =  支出  1 = 收入
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public long getTimeStamp() {
         return timeStamp;

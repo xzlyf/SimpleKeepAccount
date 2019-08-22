@@ -3,7 +3,7 @@
     <color name="colorPrimary">#607D8B</color>
     <color name="colorPrimaryDark">#455A64</color>
     <color name="primary_light">#CFD8DC</color>
-    <color name="colorAccent">#FFC107</color>
+    <color name="colorAccent">#badc58</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
@@ -11,4 +11,8 @@
 
     <color name="transparent">#00ffffff</color>
     <color name="white">#FFFFFF</color>
+    <color name="red">#DD3434</color>
+    <color name="red_press">#8D2121</color>
+
+
 </resources>
