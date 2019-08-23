@@ -1,6 +1,7 @@
 package com.xz.ska;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
@@ -33,9 +34,11 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private void initView() {
         back = findViewById(R.id.back);
         btn1 = findViewById(R.id.btn1);
+        btn2 = findViewById(R.id.btn2);
 
         back.setOnClickListener(this);
         btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
         btn1Cs = findViewById(R.id.btn1_cs);
         btn2 = findViewById(R.id.btn2);
     }
@@ -71,7 +74,8 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 currency();
                 break;
             case R.id.btn2:
-
+                startActivity(new Intent(MySelfActivity.this,CategoryActivity.class));
+                break;
 
 
         }

@@ -4,6 +4,7 @@ import android.database.Cursor;
 
 import com.xz.com.log.LogUtil;
 import com.xz.ska.entity.Book;
+import com.xz.ska.entity.Category;
 
 import org.litepal.crud.DataSupport;
 
@@ -19,7 +20,7 @@ public class LitePalUtil {
      * @param remarks
      * @param type
      */
-    public static void saveBook(long timeStamp, double money, String remarks, int type,int state) {
+    public static void saveBook(long timeStamp, double money, String remarks, int type, int state) {
         Book book = new Book();
         book.setTimeStamp(timeStamp);
         book.setMoney(money);
@@ -32,6 +33,7 @@ public class LitePalUtil {
     public static void saveBook(Book book) {
         book.save();
     }
+
 
     /**
      * update===================================
@@ -64,7 +66,8 @@ public class LitePalUtil {
 
     /**
      * 查询一个范围内的数据
-         起始时间戳 --结束时间戳
+     * 起始时间戳 --结束时间戳
+     *
      * @param start
      * @param end
      * @return
@@ -90,6 +93,15 @@ public class LitePalUtil {
     //模糊查询，待完成
     public static List<Book> queryBook(double money) {
         return DataSupport.where("money = ?", money + "").find(Book.class);
+    }
+
+    /**
+     * 查询一个表的所有数据
+     * @param c
+     * @return
+     */
+    public static List<?> queryAll(Class<?> c) {
+        return DataSupport.findAll(c);
     }
 
 }
