@@ -14,7 +14,9 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".CategoryActivity"></activity>
+        <activity android:name=".MySelfActivity" />
+        <activity android:name=".DetailActivity" />
         <activity
             android:name=".AddActivity"
             android:theme="@style/addActivity_theme" />

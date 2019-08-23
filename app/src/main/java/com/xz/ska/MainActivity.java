@@ -4,12 +4,18 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.xz.com.log.LogUtil;
 import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
+import com.xz.ska.constan.CurrencyData;
+import com.xz.ska.constan.Local;
 import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.custom.InfoTop;
 import com.xz.ska.custom.SideRecyclerView;
@@ -17,6 +23,7 @@ import com.xz.ska.custom.TipsView;
 import com.xz.ska.entity.TopInfo;
 import com.xz.ska.utils.DatePickerUtil;
 import com.xz.ska.constan.TypeZhichu;
+import com.xz.ska.utils.SharedPreferencesUtil;
 import com.xz.ska.utils.UpdateListener;
 import com.xz.ska.utils.SpacesItemDecorationVertical;
 import com.xz.ska.utils.TimeUtil;
@@ -31,7 +38,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private NewZhipeiAdapter adapter;
     private TipsView tipsView;
     private ImageView empty;
-    private android.support.design.widget.FloatingActionButton addData;
+    private ImageButton addData;
+    private Button myselfBtn;
 
     @Override
     public int getLayoutResource() {
@@ -49,18 +57,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         tipsView = findViewById(R.id.tips_view);
         addData = findViewById(R.id.add_data);
         empty = findViewById(R.id.empty_view);
+        myselfBtn = findViewById(R.id.myself_btn);
         addData.setOnClickListener(this);
+        myselfBtn.setOnClickListener(this);
     }
 
     @Override
     public void init_Data() {
-        topInfo.setShouRu("233.33");
-        topInfo.setZhiChu("3333.03");
         topInfo.setDateChoose(DatePickerUtil.getMonth() + 1 + "", +DatePickerUtil.getDay() + "");
         tipsView.setTips("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈0我是提示哈哈哈哈哈哈哈哈");
-
+        Local.moneySymbol = SharedPreferencesUtil.getString(this,"state","money_symbol","￥");
         TypeZhichu.initType(this);
         TypeShouru.initType(this);
+        CurrencyData.initType(this);
 
         init_Recycler();
 
@@ -82,6 +91,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
+        init_anim();
+    }
+    private Animation xuanzhaun;
+    private void init_anim() {
+        xuanzhaun = AnimationUtils.loadAnimation(this, R.anim.xuanzhuan);
     }
 
     private void init_Recycler() {
@@ -126,8 +140,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_data:
+                addData.startAnimation(xuanzhaun);
                 startActivity(new Intent(this, AddActivity.class));
+                overridePendingTransition(R.anim.push_in_addactivity, R.anim.no_anim);
                 break;
+            case R.id.myself_btn:
+                startActivity(new Intent(this, MySelfActivity.class));
+                overridePendingTransition(R.anim.push_in_myselfacticity, R.anim.push_out_mainactivity);
+                break;
+
         }
     }
 }

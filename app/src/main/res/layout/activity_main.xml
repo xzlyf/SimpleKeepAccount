@@ -4,18 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipChildren="false"
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    android:clipChildren="false"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
     <!--android:clipChildren="false"  不剪切溢出的子视图-->
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:clipChildren="false"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,11 +50,45 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/add_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dp_30" />
+        android:clipChildren="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_55"
+            android:layout_gravity="bottom"
+            android:background="#DBD5D5"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:text="细节" />
+
+            <Button
+                android:id="@+id/myself_btn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_weight="1"
+                android:text="我的" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/add_data"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_add"
+            android:scaleType="centerCrop"
+            android:padding="@dimen/dp_15"
+            android:background="@drawable/select_yuanxin_btn" />
+
+    </FrameLayout>
 </RelativeLayout>

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.xz.ska"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -36,4 +36,5 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation project(path: ':LogUtil')
     implementation 'com.android.support:gridlayout-v7:28.0.0'
+
 }

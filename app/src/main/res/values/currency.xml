@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currency_name">
+
+        <item>国际通用</item>
+        <item>人民币</item>
+        <item>韩币</item>
+        <item>越南盾</item>
+        <item>日元</item>
+        <item>泰铢</item>
+        <item>欧元</item>
+        <item>英镑</item>
+        <item>美元</item>
+        <item>科朗</item>
+        <item>克鲁赛罗</item>
+        <item>德拉克马</item>
+        <item>基普</item>
+        <item>法郎</item>
+        <item>里拉</item>
+        <item>奈拉</item>
+        <item>芬尼</item>
+        <item>比塞塔</item>
+        <item>比索</item>
+        <item>瑞尔</item>
+        <item>卢比</item>
+        <item>塔卡</item>
+        <item>新谢克尔</item>
+        <item>图格里克</item>
+
+    </string-array>
+    <string-array name="currency_sym">
+        <item>¤</item>
+        <item>￥</item>
+        <item>₩</item>
+        <item>₫</item>
+        <item>Ұ</item>
+        <item>฿</item>
+        <item>€</item>
+        <item>￡</item>
+        <item>$</item>
+        <item>￠</item>
+        <item>₢</item>
+        <item>₯</item>
+        <item>₭</item>
+        <item>₣</item>
+        <item>₤</item>
+        <item>₦</item>
+        <item>₰</item>
+        <item>₧</item>
+        <item>₱</item>
+        <item>៛</item>
+        <item>₨</item>
+        <item>৳</item>
+        <item>₪</item>
+        <item>₮</item>
+    </string-array>
+</resources>

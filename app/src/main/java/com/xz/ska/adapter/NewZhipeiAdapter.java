@@ -59,7 +59,6 @@ public class NewZhipeiAdapter extends RecyclerView.Adapter<NewZhipeiAdapter.Slid
 
     @Override
     public void onBindViewHolder(@NonNull NewZhipeiAdapter.SlideViewHolder viewHolder, final int i) {
-        LogUtil.e(i);
 
         final Book book = list.get(i);
 

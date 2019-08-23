@@ -45,8 +45,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
         back.setOnClickListener(this);
         zhichuLayout.setOnClickListener(this);
         shouruLayout.setOnClickListener(this);
-
     }
+
 
     private MulKeyBoardDialog dialog;
 
@@ -94,9 +94,14 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
             dialog.dismiss();
         }
         super.onDestroy();
-
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.no_anim, R.anim.push_out_addactivity);
+
+    }
 
     @Override
     public void onClick(View v) {
