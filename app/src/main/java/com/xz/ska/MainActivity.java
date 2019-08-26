@@ -16,6 +16,7 @@ import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.CurrencyData;
 import com.xz.ska.constan.Local;
+import com.xz.ska.constan.OldTypeShouru;
 import com.xz.ska.constan.OldTypeZhichu;
 import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.custom.InfoTop;
@@ -70,6 +71,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Local.moneySymbol = SharedPreferencesUtil.getString(this,"state","money_symbol","￥");
         TypeZhichu.initType(this);
         OldTypeZhichu.initType(this);
+        OldTypeShouru.initType(this);
         TypeShouru.initType(this);
         CurrencyData.initType(this);
 

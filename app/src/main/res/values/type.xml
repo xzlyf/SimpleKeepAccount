@@ -48,7 +48,29 @@
         <item>@drawable/id_weixiu</item>
         <item>@drawable/id_xuexi</item>
     </array>
-
+    <!--自定义图标-->
+    <array name="custom_icon">
+        <item>@drawable/ic_cus_1</item>
+        <item>@drawable/ic_cus_2</item>
+        <item>@drawable/ic_cus_3</item>
+        <item>@drawable/ic_cus_4</item>
+        <item>@drawable/ic_cus_5</item>
+        <item>@drawable/ic_cus_6</item>
+        <item>@drawable/ic_cus_7</item>
+        <item>@drawable/ic_cus_8</item>
+        <item>@drawable/ic_cus_9</item>
+        <item>@drawable/ic_cus_10</item>
+        <item>@drawable/ic_cus_11</item>
+        <item>@drawable/ic_cus_12</item>
+        <item>@drawable/ic_cus_13</item>
+        <item>@drawable/ic_cus_14</item>
+        <item>@drawable/ic_cus_15</item>
+        <item>@drawable/ic_cus_16</item>
+        <item>@drawable/ic_cus_17</item>
+        <item>@drawable/ic_cus_18</item>
+        <item>@drawable/ic_cus_19</item>
+        <item>@drawable/ic_cus_20</item>
+    </array>
     <string-array name="shouru_name">
         <item>工资</item>
         <item>奖金</item>

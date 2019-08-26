@@ -3,7 +3,6 @@ package com.xz.ska.constan;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
-import android.util.Log;
 
 import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
@@ -11,22 +10,33 @@ import com.xz.ska.entity.Category;
 import com.xz.ska.sql.LitePalUtil;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TypeZhichu {
     private Context context;
     private static List<Integer> iconArry = new ArrayList<>();
     private static List<String> name = new ArrayList<>();
+    private static String[] t_name;
+    private static TypedArray t_iconArry;
 
     private static TypeZhichu typeUtil;
 
     private TypeZhichu(Context context) {
         this.context = context;
         Resources res = context.getResources();
-        String[] t_name = res.getStringArray(R.array.zhichu_name);
+        t_name = res.getStringArray(R.array.zhichu_name);
         //图片资源文件数组
-        TypedArray t_iconArry = res.obtainTypedArray(R.array.zhichu_icon);
+        t_iconArry = res.obtainTypedArray(R.array.zhichu_icon);
+
+        refresh();
+    }
+
+
+    /**
+     * 刷新数据
+     */
+    public static void refresh() {
+
 
         name.clear();//回到首页时候这回再执行一遍，就会存在两次数据，所以要清空
         iconArry.clear();
@@ -38,13 +48,12 @@ public class TypeZhichu {
             iconArry.add(t_iconArry.getResourceId(i, 0));
         }
         addUserCustom();
-
     }
 
     /**
      * 加入用户自定义的type
      */
-    private void addUserCustom() {
+    private static void addUserCustom() {
         List<Category> list = (List<Category>) LitePalUtil.queryAll(Category.class);
         LogUtil.w("用户自定义类型:" + list.size());
         for (Category category : list) {

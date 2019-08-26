@@ -1,6 +1,6 @@
 <litepal>
     <dbname value="default_book" />
-    <version value="2" />
+    <version value="3" />
     <list>
         <mapping class="com.xz.ska.entity.Book" />
         <mapping class="com.xz.ska.entity.Category" />

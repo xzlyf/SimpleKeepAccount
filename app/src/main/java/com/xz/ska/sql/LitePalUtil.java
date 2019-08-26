@@ -2,7 +2,6 @@ package com.xz.ska.sql;
 
 import android.database.Cursor;
 
-import com.xz.com.log.LogUtil;
 import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Category;
 
@@ -34,6 +33,13 @@ public class LitePalUtil {
         book.save();
     }
 
+    public static void saveCategory(String name,int icon,int state){
+        Category category = new Category();
+        category.setName(name);
+        category.setIcon(icon);
+        category.setState(state);
+        category.save();
+    }
 
     /**
      * update===================================
@@ -54,6 +60,9 @@ public class LitePalUtil {
         DataSupport.deleteAll(Book.class, "timestamp = ?", timeStamp + "");
     }
 
+    public static void delete(Class<?> c ,String ...conditions){
+        DataSupport.deleteAll(c,conditions);
+    }
 
     /**
      * query=======================================
@@ -73,7 +82,8 @@ public class LitePalUtil {
      * @return
      */
     public static List<Book> queryBookDATE(long start, long end) {
-        Cursor cursor = DataSupport.findBySQL("SELECT * FROM Book WHERE  timestamp BETWEEN " + start + " AND " + end);
+        Cursor cursor = DataSupport
+                .findBySQL("SELECT * FROM Book WHERE  timestamp BETWEEN " + start + " AND " + end);
         int length = cursor.getCount();
 
         List<Book> list = new ArrayList<>();

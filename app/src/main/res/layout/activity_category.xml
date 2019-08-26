@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,63 +8,114 @@
     android:orientation="vertical"
     tools:context=".CategoryActivity">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical">
-       <FrameLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical">
 
-           <TextView
-               android:layout_width="match_parent"
-               android:layout_height="@dimen/dp_45"
-               android:background="@color/colorPrimary"
-               android:gravity="center"
-               android:text="类型管理"
-               android:textColor="@color/white"
-               android:textSize="@dimen/sp_18" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-           <ImageView
-               android:id="@+id/back"
-               android:layout_width="@dimen/dp_30"
-               android:layout_height="@dimen/dp_30"
-               android:layout_gravity="center_vertical"
-               android:layout_marginStart="@dimen/dp_12"
-               android:background="@drawable/selector_btn"
-               android:clickable="true"
-               android:focusable="true"
-               android:padding="@dimen/dp_5"
-               android:src="@drawable/ic_back_white" />
-           <ImageView
-               android:layout_width="@dimen/dp_30"
-               android:layout_height="@dimen/dp_30"
-               android:layout_marginEnd="@dimen/dp_12"
-               android:layout_gravity="center|end"
-               android:src="@drawable/ic_add"/>
-       </FrameLayout>
-       <android.support.v7.widget.RecyclerView
-           android:id="@+id/system_icon_recycler"
-           android:background="@color/white"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_45"
+                android:gravity="center"
+                android:text="类型管理"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_18" />
 
-       <TextView
-           android:id="@+id/tips"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:layout_marginTop="@dimen/dp_12"
-           android:paddingStart="@dimen/dp_10"
-           android:paddingEnd="@dimen/dp_10"
-           android:text="用户增加"
-           android:textColor="@color/secondary_text" />
-       <android.support.v7.widget.RecyclerView
-           android:id="@+id/user_icon_recycler"
-           android:background="@color/white"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"/>
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/dp_12"
+                android:background="@drawable/selector_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/dp_5"
+                android:src="@drawable/ic_back_white" />
 
-   </LinearLayout>
+            <ImageView
+                android:id="@+id/add_type"
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"
+                android:layout_gravity="center|end"
+                android:layout_marginEnd="@dimen/dp_12"
+                android:background="@drawable/selector_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:padding="@dimen/dp_5"
+                android:src="@drawable/ic_add" />
+        </FrameLayout>
 
-</android.support.v4.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/zhichu_recycler"
+                style="@style/title_fenpei"
+                android:layout_marginRight="@dimen/dp_20"
+                android:textColor="@color/white"
+                android:text="支出" />
+
+            <TextView
+                android:id="@+id/shouru_recycler"
+                android:textColor="@color/white"
+
+                style="@style/title_fenpei"
+                android:text="收入" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"
+                android:text="系统默认"
+                android:textColor="@color/secondary_text" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/system_icon_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+            <TextView
+                android:id="@+id/tips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"
+                android:text="用户增加"
+                android:textColor="@color/secondary_text" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/user_icon_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

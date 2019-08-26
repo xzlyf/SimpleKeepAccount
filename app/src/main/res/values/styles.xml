@@ -67,5 +67,5 @@
 
         <item name="android:focusableInTouchMode">false</item>
     </style>
-    
+
 </resources>
