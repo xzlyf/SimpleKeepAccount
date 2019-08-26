@@ -18,8 +18,6 @@ import com.xz.com.log.LogUtil;
 import com.xz.ska.DetailActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
-import com.xz.ska.constan.TypeShouru;
-import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.UpdateListener;
@@ -58,7 +56,7 @@ public class NewZhipeiAdapter extends RecyclerView.Adapter<NewZhipeiAdapter.Slid
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NewZhipeiAdapter.SlideViewHolder viewHolder, final int i) {
+    public void onBindViewHolder(@NonNull NewZhipeiAdapter.SlideViewHolder viewHolder, int i) {
 
         final Book book = list.get(i);
 
@@ -96,18 +94,18 @@ public class NewZhipeiAdapter extends RecyclerView.Adapter<NewZhipeiAdapter.Slid
             @Override
             public void onClick(View v) {
 
-                    context.startActivity(new Intent(context, DetailActivity.class).putExtra("book",book));
+                context.startActivity(new Intent(context, DetailActivity.class).putExtra("book", book));
 
             }
         });
         if (list.get(i).getState() == 0) {
-            viewHolder.idTypeImg.setImageResource(TypeZhichu.getIcon(book.getType()));
-            viewHolder.idTypeName.setText(TypeZhichu.getName(book.getType()));
+            viewHolder.idTypeImg.setImageResource(book.getType());
+            viewHolder.idTypeName.setText(book.getTitle());
             viewHolder.moneyText.setText("-" + book.getMoney() + Local.moneySymbol);
 
         } else {
-            viewHolder.idTypeImg.setImageResource(TypeShouru.getIcon(book.getType()));
-            viewHolder.idTypeName.setText(TypeShouru.getName(book.getType()));
+            viewHolder.idTypeImg.setImageResource(book.getType());
+            viewHolder.idTypeName.setText(book.getTitle());
             viewHolder.moneyText.setText(book.getMoney() + Local.moneySymbol);
 
         }

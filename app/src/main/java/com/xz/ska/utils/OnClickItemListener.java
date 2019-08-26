@@ -1,5 +1,5 @@
 package com.xz.ska.utils;
 
 public interface OnClickItemListener {
-    void onClick(int i);
+    void onClick(int i,String title);
 }

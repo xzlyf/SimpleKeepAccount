@@ -47,7 +47,13 @@ public class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 if (listener!=null){
-                    listener.onClick(i);
+
+                    if (Local.state ==0){
+                        listener.onClick(TypeZhichu.getIcon(i),TypeZhichu.getName(i));
+
+                    }else{
+                        listener.onClick(TypeShouru.getIcon(i),TypeShouru.getName(i));
+                    }
                 }
             }
         });

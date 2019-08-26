@@ -62,19 +62,20 @@
                 android:id="@+id/zhichu_recycler"
                 style="@style/title_fenpei"
                 android:layout_marginRight="@dimen/dp_20"
-                android:textColor="@color/white"
-                android:text="支出" />
+                android:text="支出"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/shouru_recycler"
-                android:textColor="@color/white"
-
                 style="@style/title_fenpei"
-                android:text="收入" />
+
+                android:text="收入"
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 
     <android.support.v4.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -83,21 +84,6 @@
             android:layout_height="wrap_content"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_12"
-                android:paddingStart="@dimen/dp_10"
-                android:paddingEnd="@dimen/dp_10"
-                android:text="系统默认"
-                android:textColor="@color/secondary_text" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/system_icon_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white" />
 
             <TextView
                 android:id="@+id/tips"
@@ -114,6 +100,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_12"
+                android:paddingStart="@dimen/dp_10"
+                android:paddingEnd="@dimen/dp_10"
+                android:text="系统默认"
+                android:textColor="@color/secondary_text" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/system_icon_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

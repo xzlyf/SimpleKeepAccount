@@ -19,12 +19,13 @@ public class LitePalUtil {
      * @param remarks
      * @param type
      */
-    public static void saveBook(long timeStamp, double money, String remarks, int type, int state) {
+    public static void saveBook(long timeStamp, double money, String remarks, int type,String title, int state) {
         Book book = new Book();
         book.setTimeStamp(timeStamp);
         book.setMoney(money);
         book.setRemarks(remarks);
         book.setType(type);
+        book.setTitle(title);
         book.setState(state);
         book.save();
     }
@@ -94,6 +95,7 @@ public class LitePalUtil {
             book.setTimeStamp(cursor.getLong(cursor.getColumnIndex("timestamp")));
             book.setState(cursor.getInt(cursor.getColumnIndex("state")));
             book.setType(cursor.getInt(cursor.getColumnIndex("type")));
+            book.setTitle(cursor.getString(cursor.getColumnIndex("title")));
             list.add(book);
         }
         cursor.close();

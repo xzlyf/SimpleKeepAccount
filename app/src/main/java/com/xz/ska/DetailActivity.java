@@ -3,18 +3,15 @@ package com.xz.ska;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xz.com.log.LogUtil;
 import com.xz.ska.constan.Local;
-import com.xz.ska.constan.TypeShouru;
-import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.TimeUtil;
@@ -61,12 +58,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         back.setOnClickListener(this);
 
         if (book.getState()==0){
-            selectType.setImageResource(TypeZhichu.getIcon(book.getType()));
-            nameType.setText(TypeZhichu.getName(book.getType()));
+            selectType.setImageResource(book.getType());
+            nameType.setText(book.getTitle());
             moneyText.setText("-"+book.getMoney()+ Local.moneySymbol);
         }else{
-            selectType.setImageResource(TypeShouru.getIcon(book.getType()));
-            nameType.setText(TypeShouru.getName(book.getType()));
+            selectType.setImageResource(book.getType());
+            nameType.setText(book.getTitle());
             moneyText.setText(book.getMoney()+ Local.moneySymbol);
         }
         remarksText.setText(book.getRemarks());

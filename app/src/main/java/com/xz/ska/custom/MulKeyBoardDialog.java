@@ -23,15 +23,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.xz.com.log.LogUtil;
 import com.xz.ska.MainActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
-import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.DatePickerUtil;
 import com.xz.ska.utils.TimeUtil;
-import com.xz.ska.constan.TypeZhichu;
 
 import java.math.BigDecimal;
 import java.util.regex.Pattern;
@@ -61,6 +58,7 @@ public class MulKeyBoardDialog extends Dialog {
 
     private boolean isSubmit = false;//是否提交
     private int type;
+    private String title;
 
     public void setEditable(EditText editable) {
         this.et = editable;
@@ -77,11 +75,14 @@ public class MulKeyBoardDialog extends Dialog {
     public void setIcon(int type) {
         this.type = type;
         if (Local.state == 0) {
-            selectType.setImageResource(TypeZhichu.getIcon(type));
+            selectType.setImageResource(type);
         } else {
-            selectType.setImageResource(TypeShouru.getIcon(type));
+            selectType.setImageResource(type);
         }
 
+    }
+    public void setTitle(String title){
+        this.title = title;
     }
 
 
@@ -260,7 +261,7 @@ public class MulKeyBoardDialog extends Dialog {
         }
 
         //保存到数据库
-        LitePalUtil.saveBook(timeStamp, qm, remark, type, Local.state);
+        LitePalUtil.saveBook(timeStamp, qm, remark, type,title ,Local.state);
         Toast.makeText(mContext, "记账成功", Toast.LENGTH_SHORT).show();
         //回到首页
         mContext.startActivity(new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));

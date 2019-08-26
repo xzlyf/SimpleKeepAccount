@@ -69,11 +69,12 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
 
         adapter.setOnItemClickListener(new OnClickItemListener() {
             @Override
-            public void onClick(int i) {
+            public void onClick(int i,String title) {
 
                 dialog = new MulKeyBoardDialog(AddActivity.this, R.style.base_dialog);
                 dialog.create();
                 dialog.setIcon(i);
+                dialog.setTitle(title);
                 dialog.show();
 
 

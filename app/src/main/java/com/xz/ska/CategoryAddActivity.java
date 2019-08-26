@@ -1,6 +1,7 @@
 package com.xz.ska;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
+import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.sql.LitePalUtil;
 
@@ -109,9 +111,12 @@ public class CategoryAddActivity extends BaseActivity implements View.OnClickLis
             return;
         }
         LitePalUtil.saveCategory(typeName.getText().toString().trim(),iconList.get(selectType),Local.state);
-        finish();
         TypeZhichu.refresh();//刷新图标库
+        TypeShouru.refresh();
         mToast("正确");
+        setResult(RESULT_OK,new Intent().putExtra("isRefresh",true));//返回数据给上一层
+        finish();
+
     }
 
     class TypeAdapter extends RecyclerView.Adapter<TypeAdapter.ViewHolder> {

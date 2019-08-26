@@ -57,8 +57,10 @@ public class TypeZhichu {
         List<Category> list = (List<Category>) LitePalUtil.queryAll(Category.class);
         LogUtil.w("用户自定义类型:" + list.size());
         for (Category category : list) {
-            name.add(category.getName());
-            iconArry.add(category.getIcon());
+            if (category.getState() == 0) {
+                name.add(category.getName());
+                iconArry.add(category.getIcon());
+            }
         }
     }
 

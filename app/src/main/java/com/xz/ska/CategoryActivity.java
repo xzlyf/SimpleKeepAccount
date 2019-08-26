@@ -3,6 +3,7 @@ package com.xz.ska;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
@@ -40,6 +40,9 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
     private TextView tips;
     private TextView zhichuRecycler;
     private TextView shouruRecycler;
+    private List<Category> user_data = new ArrayList<>();//原始数据
+    private List<Category> user_data_zhichu = new ArrayList<>();
+    private List<Category> user_data_shouru = new ArrayList<>();
 
     @Override
     public int getLayoutResource() {
@@ -53,16 +56,28 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void init_Data() {
-//        增加数据
-//        Category category = new Category();
-//        category.setIcon(R.drawable.id_gouwu);
-//        category.setName("购物");
-//        category.save();
 
         Local.state = 0;
+
         init_recycler();
         setSelect(zhichuRecycler, true);
         setSelect(shouruRecycler, false);
+    }
+
+    private void get_local() {
+        user_data_zhichu.clear();
+        user_data_shouru.clear();
+        user_data.clear();
+        user_data = (List<Category>) LitePalUtil.queryAll(Category.class);//读取本都sql数据
+        //分类数据
+        for (Category category : user_data) {
+            if (category.getState() == 0) {
+                user_data_zhichu.add(category);
+            } else if (category.getState()==1){
+                user_data_shouru.add(category);
+            }
+        }
+
     }
 
     private void init_recycler() {
@@ -80,9 +95,10 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onStart() {
         super.onStart();
-        if (Local.state==0){
+        get_local();
+        if (Local.state == 0) {
             getZhichuList();
-        }else{
+        } else {
             getShouruList();
         }
     }
@@ -127,9 +143,8 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         }
         sys_adapter.refresh(sys_data);
 
-        //用户添加=============================
-        List<Category> user_data = (List<Category>) LitePalUtil.queryAll(Category.class);
-        user_adapter.refresh(user_data);
+//        //用户添加=============================
+        user_adapter.refresh(user_data_zhichu);
 
     }
 
@@ -143,6 +158,9 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
             sys_data.add(i);
         }
         sys_adapter.refresh(sys_data);
+        //用户添加=============================
+
+        user_adapter.refresh(user_data_shouru);
     }
 
     @Override
@@ -152,7 +170,7 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.add_type:
-                startActivity(new Intent(CategoryActivity.this,CategoryAddActivity.class));
+                startActivityForResult(new Intent(CategoryActivity.this, CategoryAddActivity.class),Local.IS_REFRESH);
                 break;
             case R.id.zhichu_recycler:
                 if (Local.state != 0) {
@@ -173,6 +191,30 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
+    /**
+     * 通过活动回调判断是都需要刷新列表
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        Log.d("xz", "onActivityResult: "+requestCode);
+//        Log.d("xz", "onActivityResult: "+resultCode);
+//        Log.d("xz", "onActivityResult: "+data.getBooleanExtra("isRefresh",false));
+        if (requestCode==Local.IS_REFRESH){
+            if (resultCode==RESULT_OK){
+                if (data.getBooleanExtra("isRefresh",false)){
+//                    get_local();
+//                    if (Local.state == 0) {
+//                        getZhichuList();
+//                    } else {
+//                        getShouruList();
+//                    }
+                }
+            }
+        }
+    }
 
     /**
      * 系统自带
@@ -206,10 +248,10 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-            if (Local.state==0){
+            if (Local.state == 0) {
                 viewHolder.addIcon.setImageResource(TypeZhichu.getIcon(i));
                 viewHolder.addName.setText(TypeZhichu.getName(i));
-            }else{
+            } else {
                 viewHolder.addIcon.setImageResource(TypeShouru.getIcon(i));
                 viewHolder.addName.setText(TypeShouru.getName(i));
             }
@@ -274,8 +316,8 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
              * 所以要加上22个默认图标
              * TypeZhichu初始化时会加上用户自设的值到尾部
              */
-            viewHolder.addIcon.setImageResource(TypeZhichu.getIcon(i + 22));
-            viewHolder.addName.setText(TypeZhichu.getName(i + 22));
+            viewHolder.addIcon.setImageResource(mlist.get(i).getIcon());
+            viewHolder.addName.setText(mlist.get(i).getName());
         }
 
         @Override
@@ -308,10 +350,9 @@ public class CategoryActivity extends BaseActivity implements View.OnClickListen
                 menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(mContext, "使用该类型的账单会显示“未定义”，请及时删除或修改", Toast.LENGTH_LONG).show();
                         int icon = mlist.get(getLayoutPosition()).getIcon();
                         String name = mlist.get(getLayoutPosition()).getName();
-
+                        //删除操作
                         LitePalUtil.delete(Category.class, "icon = ? and name = ?", icon + "", name);
                         mlist.remove(getLayoutPosition());
                         notifyDataSetChanged();

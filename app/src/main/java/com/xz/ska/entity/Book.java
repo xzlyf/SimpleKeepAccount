@@ -9,6 +9,16 @@ public class Book extends DataSupport implements Serializable {
     private double money;//钱 正数-收入 负数-支出
     private String remarks;//备注
     private int type;//类型
+    private String title;//类型标题
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     private int state;// 0 =  支出  1 = 收入
 
     public int getState() {
