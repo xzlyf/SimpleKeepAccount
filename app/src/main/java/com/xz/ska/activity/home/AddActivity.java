@@ -1,4 +1,4 @@
-package com.xz.ska;
+package com.xz.ska.activity.home;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.xz.ska.R;
 import com.xz.ska.adapter.TypeAdapter;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;

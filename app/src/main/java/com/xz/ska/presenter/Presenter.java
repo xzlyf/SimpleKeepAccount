@@ -1,25 +1,18 @@
 package com.xz.ska.presenter;
 
-import android.widget.Toast;
-
-import com.xz.com.log.LogUtil;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.entity.Book;
+import com.xz.ska.entity.Setting;
 import com.xz.ska.entity.TopInfo;
 import com.xz.ska.model.Model;
 import com.xz.ska.sql.LitePalUtil;
+import com.xz.ska.utils.SharedPreferencesUtil;
 import com.xz.ska.utils.TimeUtil;
 
 import java.math.BigDecimal;
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import static com.xz.ska.utils.ActivityUtil.list;
 
 public class Presenter {
     private Model model;
@@ -32,7 +25,7 @@ public class Presenter {
 
 
     /**
-     * 指定日期
+     * 指定日期=====================================================================================
      * 获取本地支配细节数据
      */
     public void getDetailData(final long time) {
@@ -84,9 +77,9 @@ public class Presenter {
 
                 for (Book book : totalBook) {
                     if (book.getState() == 0) {
-                        month_zhichu =month_zhichu.add(new BigDecimal(Double.toString(book.getMoney())));
-                    }else{
-                        month_shouru =month_shouru.add(new BigDecimal(Double.toString(book.getMoney())));
+                        month_zhichu = month_zhichu.add(new BigDecimal(Double.toString(book.getMoney())));
+                    } else {
+                        month_shouru = month_shouru.add(new BigDecimal(Double.toString(book.getMoney())));
                     }
                 }
                 topInfo.setYue_shouru(month_shouru.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue());
@@ -97,5 +90,31 @@ public class Presenter {
                 view.dismissLoading();
             }
         }).start();
+    }
+
+    /**
+     * 获取用户设置==================================================================================
+     */
+    public void getUserSetting() {
+
+        //容器
+        Setting setting = new Setting();
+
+
+
+        int hour;
+        int minute;
+        boolean mSwitch = SharedPreferencesUtil.getBoolean(view, "alarm", "mswitch", false);
+        if (mSwitch) {
+            hour = SharedPreferencesUtil.getInt(view, "alarm", "mhour", 23);
+            minute = SharedPreferencesUtil.getInt(view, "alarm", "minute", 23);
+            setting.setShow(mSwitch);
+            setting.setShowString("每天" + hour + ":" + minute);
+        }
+
+
+        view.backToUi(setting);
+
+
     }
 }

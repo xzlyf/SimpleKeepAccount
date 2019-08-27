@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.xz.ska.MainActivity;
+import com.xz.ska.activity.MainActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
 import com.xz.ska.sql.LitePalUtil;

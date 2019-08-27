@@ -1,4 +1,4 @@
-package com.xz.ska;
+package com.xz.ska.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.xz.com.log.LogUtil;
+import com.xz.ska.R;
+import com.xz.ska.activity.home.AddActivity;
 import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.CurrencyData;

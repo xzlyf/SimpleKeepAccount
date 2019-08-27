@@ -14,20 +14,27 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".CategoryAddActivity"></activity>
-        <activity android:name=".CategoryActivity" />
-        <activity android:name=".MySelfActivity" />
-        <activity android:name=".DetailActivity" />
+        <activity android:name=".activity.alarm.AlarmSettingActivity"></activity>
+        <activity android:name=".activity.category.CategoryAddActivity" />
+        <activity android:name=".activity.category.CategoryActivity" />
+        <activity android:name=".activity.MySelfActivity" />
+        <activity android:name=".activity.home.DetailActivity" />
         <activity
-            android:name=".AddActivity"
+            android:name=".activity.home.AddActivity"
             android:theme="@style/addActivity_theme" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".broadcast.RepeatingAlarm">
+            <intent-filter>
+                <action android:name="com.xz.ska.alarm" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

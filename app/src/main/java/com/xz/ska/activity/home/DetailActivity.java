@@ -1,4 +1,4 @@
-package com.xz.ska;
+package com.xz.ska.activity.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xz.com.log.LogUtil;
+import com.xz.ska.R;
+import com.xz.ska.activity.MainActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;

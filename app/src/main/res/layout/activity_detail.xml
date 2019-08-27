@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:orientation="vertical"
-    tools:context=".DetailActivity">
+    tools:context=".activity.home.DetailActivity">
 
     <ImageView
         android:id="@+id/back"

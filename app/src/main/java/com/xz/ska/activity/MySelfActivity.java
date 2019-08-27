@@ -1,17 +1,19 @@
-package com.xz.ska;
+package com.xz.ska.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.xz.ska.R;
+import com.xz.ska.activity.alarm.AlarmSettingActivity;
+import com.xz.ska.activity.category.CategoryActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.custom.CurrencyDialog;
+import com.xz.ska.entity.Setting;
 
 public class MySelfActivity extends BaseActivity implements View.OnClickListener {
 
@@ -20,6 +22,8 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private FrameLayout btn1;
     private TextView btn1Cs;
     private FrameLayout btn2;
+    private FrameLayout btn3;
+    private TextView btn3_sp;
 
     @Override
     public int getLayoutResource() {
@@ -41,18 +45,34 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn2.setOnClickListener(this);
         btn1Cs = findViewById(R.id.btn1_cs);
         btn2 = findViewById(R.id.btn2);
+        btn3 = findViewById(R.id.btn3);
+        btn3_sp = findViewById(R.id.btn3_sp);
+        btn3.setOnClickListener(this);
+
     }
 
     @Override
     public void init_Data() {
         btn1Cs.setText("已选择：" + Local.moneySymbol);
-
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.getUserSetting();
+    }
 
     @Override
     public void showData(Object object) {
+        if (object instanceof Setting) {
 
+            Setting setting = (Setting) object;
+            if (setting.isShow()) {
+                btn3_sp.setText(setting.getShowString());
+            } else {
+                btn3_sp.setText("");
+            }
+        }
     }
 
 
@@ -74,7 +94,10 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 currency();
                 break;
             case R.id.btn2:
-                startActivity(new Intent(MySelfActivity.this,CategoryActivity.class));
+                startActivity(new Intent(MySelfActivity.this, CategoryActivity.class));
+                break;
+            case R.id.btn3:
+                startActivity(new Intent(MySelfActivity.this, AlarmSettingActivity.class));
                 break;
 
 

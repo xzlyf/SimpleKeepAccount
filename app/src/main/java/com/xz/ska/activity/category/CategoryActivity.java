@@ -1,4 +1,4 @@
-package com.xz.ska;
+package com.xz.ska.activity.category;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.xz.ska.R;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.constan.OldTypeShouru;

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".activity.alarm.AlarmSettingActivity">
+
+    <FrameLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_12"
+            android:background="@drawable/selector_btn"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_back_white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:gravity="center"
+            android:text="提醒记账"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:background="@drawable/background_quanyuanjiao"
+        android:elevation="@dimen/dp_2"
+        android:padding="@dimen/dp_5"
+        app:layout_constraintBottom_toTopOf="@+id/time_select_layout"
+        app:layout_constraintLeft_toLeftOf="@+id/time_select_layout"
+        app:layout_constraintRight_toRightOf="@+id/time_select_layout">
+
+        <TextView
+            android:id="@+id/alarm_tips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp_10"
+            android:text="我将每天9:40分提醒您记账"
+            android:textColor="@color/glossDark"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.SwitchCompat
+            android:id="@+id/alarm_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/time_select_layout"
+        android:layout_width="@dimen/dp_250"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TimePicker
+            android:id="@+id/time_select"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:timePickerMode="spinner" />
+    </LinearLayout>
+
+    <at.markushi.ui.CircleButton
+        android:id="@+id/submit"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
+        android:src="@drawable/ic_gou"
+        app:cb_color="@color/colorAccent"
+        app:cb_pressedRingWidth="8dip"
+        android:layout_marginTop="@dimen/dp_50"
+        android:padding="@dimen/dp_15"
+        app:layout_constraintLeft_toLeftOf="@id/time_select_layout"
+        app:layout_constraintRight_toRightOf="@+id/time_select_layout"
+        app:layout_constraintTop_toBottomOf="@+id/time_select_layout" />
+
+</android.support.constraint.ConstraintLayout>

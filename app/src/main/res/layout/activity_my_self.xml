@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark"
     android:orientation="vertical"
-    tools:context=".MySelfActivity">
+    tools:context=".activity.MySelfActivity">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -72,8 +72,8 @@
     </FrameLayout>
 
     <FrameLayout
-        android:layout_width="match_parent"
         android:id="@+id/btn2"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/dp_34"
         android:layout_marginTop="@dimen/dp_2"
         android:background="@color/white"
@@ -96,8 +96,8 @@
     </FrameLayout>
 
     <FrameLayout
+        android:id="@+id/btn3"
         android:layout_width="match_parent"
-
         android:layout_height="@dimen/dp_34"
         android:layout_marginTop="@dimen/dp_2"
         android:background="@color/white"
@@ -112,11 +112,20 @@
             android:text="记账提醒"
             android:textSize="@dimen/sp_14" />
 
-        <ImageView
-            android:layout_width="@dimen/dp_15"
-            android:layout_height="@dimen/dp_15"
+        <LinearLayout
             android:layout_gravity="center_vertical|end"
-            android:src="@drawable/ic_right" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/btn3_sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="@dimen/dp_15"
+                android:layout_height="@dimen/dp_15"
+                android:src="@drawable/ic_right" />
+        </LinearLayout>
     </FrameLayout>
 
     <FrameLayout
@@ -142,6 +151,7 @@
             android:layout_gravity="center_vertical|end"
             android:src="@drawable/ic_right" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
 
@@ -165,6 +175,7 @@
             android:layout_gravity="center_vertical|end"
             android:src="@drawable/ic_right" />
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
 

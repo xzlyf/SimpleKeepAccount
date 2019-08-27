@@ -15,7 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xz.com.log.LogUtil;
-import com.xz.ska.DetailActivity;
+import com.xz.ska.activity.home.DetailActivity;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
 import com.xz.ska.entity.Book;
