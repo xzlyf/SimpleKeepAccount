@@ -7,6 +7,7 @@
     android:clipChildren="false"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:background="@color/dark"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
@@ -64,6 +65,7 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/cartogram_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

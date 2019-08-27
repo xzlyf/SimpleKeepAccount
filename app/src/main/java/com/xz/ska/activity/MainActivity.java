@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
 import com.xz.ska.activity.home.AddActivity;
+import com.xz.ska.activity.setting.MySelfActivity;
 import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.CurrencyData;
@@ -44,6 +45,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView empty;
     private ImageButton addData;
     private Button myselfBtn;
+    private Button cartogramBtn;
 
     @Override
     public int getLayoutResource() {
@@ -62,6 +64,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         addData = findViewById(R.id.add_data);
         empty = findViewById(R.id.empty_view);
         myselfBtn = findViewById(R.id.myself_btn);
+        cartogramBtn = findViewById(R.id.cartogram_btn);
+        cartogramBtn.setOnClickListener(this);
         addData.setOnClickListener(this);
         myselfBtn.setOnClickListener(this);
     }
@@ -153,6 +157,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.myself_btn:
                 startActivity(new Intent(this, MySelfActivity.class));
                 overridePendingTransition(R.anim.push_in_myselfacticity, R.anim.push_out_mainactivity);
+                break;
+            case R.id.cartogram_btn:
+                mToast("未配置");
                 break;
 
         }

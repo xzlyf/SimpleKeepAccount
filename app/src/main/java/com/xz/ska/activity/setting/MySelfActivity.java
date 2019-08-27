@@ -1,4 +1,4 @@
-package com.xz.ska.activity;
+package com.xz.ska.activity.setting;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,8 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xz.ska.R;
-import com.xz.ska.activity.alarm.AlarmSettingActivity;
-import com.xz.ska.activity.category.CategoryActivity;
+import com.xz.ska.activity.LockActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.custom.CurrencyDialog;
@@ -23,6 +22,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private TextView btn1Cs;
     private FrameLayout btn2;
     private FrameLayout btn3;
+    private FrameLayout btn4;
     private TextView btn3_sp;
 
     @Override
@@ -46,8 +46,10 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn1Cs = findViewById(R.id.btn1_cs);
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
+        btn4 = findViewById(R.id.btn4);
         btn3_sp = findViewById(R.id.btn3_sp);
         btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
 
     }
 
@@ -98,6 +100,9 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.btn3:
                 startActivity(new Intent(MySelfActivity.this, AlarmSettingActivity.class));
+                break;
+            case R.id.btn4:
+                startActivity(new Intent(MySelfActivity.this, LockActivity.class));
                 break;
 
 

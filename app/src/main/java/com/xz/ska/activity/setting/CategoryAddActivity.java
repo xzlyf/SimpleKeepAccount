@@ -1,4 +1,4 @@
-package com.xz.ska.activity.category;
+package com.xz.ska.activity.setting;
 
 import android.content.Context;
 import android.content.Intent;

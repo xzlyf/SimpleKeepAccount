@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xz.ska">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:name=".MyApplication"
@@ -14,10 +16,13 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".activity.alarm.AlarmSettingActivity"></activity>
-        <activity android:name=".activity.category.CategoryAddActivity" />
-        <activity android:name=".activity.category.CategoryActivity" />
-        <activity android:name=".activity.MySelfActivity" />
+        <activity
+            android:name=".activity.LockActivity"
+            android:theme="@style/addActivity_theme" />
+        <activity android:name=".activity.setting.AlarmSettingActivity" />
+        <activity android:name=".activity.setting.CategoryAddActivity" />
+        <activity android:name=".activity.setting.CategoryActivity" />
+        <activity android:name=".activity.setting.MySelfActivity" />
         <activity android:name=".activity.home.DetailActivity" />
         <activity
             android:name=".activity.home.AddActivity"

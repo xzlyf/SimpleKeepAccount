@@ -1,4 +1,4 @@
-package com.xz.ska.activity.alarm;
+package com.xz.ska.activity.setting;
 
 import android.support.v7.widget.SwitchCompat;
 import android.view.View;

@@ -7,7 +7,7 @@
     android:background="@color/dark"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context=".activity.category.CategoryAddActivity">
+    tools:context=".activity.setting.CategoryAddActivity">
 
 
     <FrameLayout
