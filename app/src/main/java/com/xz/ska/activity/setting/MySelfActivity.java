@@ -102,7 +102,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 startActivity(new Intent(MySelfActivity.this, AlarmSettingActivity.class));
                 break;
             case R.id.btn4:
-                startActivity(new Intent(MySelfActivity.this, LockActivity.class));
+                startActivity(new Intent(MySelfActivity.this, LockActivity.class).putExtra("isHome",false));
                 break;
 
 

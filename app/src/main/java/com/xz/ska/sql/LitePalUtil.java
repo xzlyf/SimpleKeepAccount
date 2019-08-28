@@ -3,6 +3,7 @@ package com.xz.ska.sql;
 import android.database.Cursor;
 
 import com.xz.ska.entity.Book;
+import com.xz.ska.entity.CFAS;
 import com.xz.ska.entity.Category;
 
 import org.litepal.crud.DataSupport;
@@ -19,7 +20,7 @@ public class LitePalUtil {
      * @param remarks
      * @param type
      */
-    public static void saveBook(long timeStamp, double money, String remarks, int type,String title, int state) {
+    public static void saveBook(long timeStamp, double money, String remarks, int type, String title, int state) {
         Book book = new Book();
         book.setTimeStamp(timeStamp);
         book.setMoney(money);
@@ -34,12 +35,36 @@ public class LitePalUtil {
         book.save();
     }
 
-    public static void saveCategory(String name,int icon,int state){
+    public static void saveCategory(String name, int icon, int state) {
         Category category = new Category();
         category.setName(name);
         category.setIcon(icon);
         category.setState(state);
         category.save();
+    }
+
+    public static void saveCFAS(String ...param) {
+
+        CFAS cfas = new CFAS();
+        if (param[0]!=null){
+            cfas.setK1(param[0]);
+        }
+        if (param[1]!=null){
+            cfas.setK2(param[1]);
+        }
+        if (param[2]!=null){
+            cfas.setK3(param[2]);
+        }
+        if (param[3]!=null){
+            cfas.setK4(param[3]);
+        }
+        if (param[4]!=null){
+            cfas.setK5(param[4]);
+        }
+        if (param[5]!=null){
+            cfas.setK6(param[5]);
+        }
+        cfas.save();
     }
 
     /**
@@ -61,8 +86,8 @@ public class LitePalUtil {
         DataSupport.deleteAll(Book.class, "timestamp = ?", timeStamp + "");
     }
 
-    public static void delete(Class<?> c ,String ...conditions){
-        DataSupport.deleteAll(c,conditions);
+    public static void delete(Class<?> c, String... conditions) {
+        DataSupport.deleteAll(c, conditions);
     }
 
     /**
@@ -109,11 +134,22 @@ public class LitePalUtil {
 
     /**
      * 查询一个表的所有数据
+     *
      * @param c
      * @return
      */
     public static List<?> queryAll(Class<?> c) {
         return DataSupport.findAll(c);
+    }
+
+    /**
+     * 查询一个的第一条数据
+     *
+     * @param c
+     * @return
+     */
+    public static Object queryFirst(Class<?> c) {
+        return DataSupport.findFirst(c);
     }
 
 }

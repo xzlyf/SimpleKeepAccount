@@ -264,7 +264,7 @@ public class MulKeyBoardDialog extends Dialog {
         LitePalUtil.saveBook(timeStamp, qm, remark, type,title ,Local.state);
         Toast.makeText(mContext, "记账成功", Toast.LENGTH_SHORT).show();
         //回到首页
-        mContext.startActivity(new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        mContext.startActivity(new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("isSkip",true));
     }
 
     /**

@@ -5,4 +5,9 @@
         <mapping class="com.xz.ska.entity.Book" />
         <mapping class="com.xz.ska.entity.Category" />
     </list>
+    <dbname value="CFAS"/>
+    <version value="3"/>
+    <list>
+        <mapping class="com.xz.ska.entity.CFAS"/>
+    </list>
 </litepal>

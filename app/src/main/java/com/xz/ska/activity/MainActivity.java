@@ -22,16 +22,18 @@ import com.xz.ska.constan.Local;
 import com.xz.ska.constan.OldTypeShouru;
 import com.xz.ska.constan.OldTypeZhichu;
 import com.xz.ska.constan.TypeShouru;
+import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.custom.InfoTop;
 import com.xz.ska.custom.SideRecyclerView;
 import com.xz.ska.custom.TipsView;
+import com.xz.ska.entity.CFAS;
 import com.xz.ska.entity.TopInfo;
+import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.DatePickerUtil;
-import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.utils.SharedPreferencesUtil;
-import com.xz.ska.utils.UpdateListener;
 import com.xz.ska.utils.SpacesItemDecorationVertical;
 import com.xz.ska.utils.TimeUtil;
+import com.xz.ska.utils.UpdateListener;
 
 import java.util.List;
 
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageButton addData;
     private Button myselfBtn;
     private Button cartogramBtn;
+    private CFAS cfas;
 
     @Override
     public int getLayoutResource() {
@@ -72,6 +75,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void init_Data() {
+        if (!getIntent().getBooleanExtra("isSkip",false)){
+            //判断是否已设置过pass
+            cfas = (CFAS) LitePalUtil.queryFirst(CFAS.class);
+            if (cfas != null) {
+                startActivity(new Intent(MainActivity.this,LockActivity.class).putExtra("isHome",true));
+                finish();
+            }
+
+        }
+
+
         topInfo.setDateChoose(DatePickerUtil.getMonth() + 1 + "", +DatePickerUtil.getDay() + "");
         tipsView.setTips("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈0我是提示哈哈哈哈哈哈哈哈");
         Local.moneySymbol = SharedPreferencesUtil.getString(this,"state","money_symbol","￥");
@@ -141,7 +155,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             topInfo.setTodayText(((TopInfo) object).getRi_zhipei() + "");
             topInfo.setZhiChu(((TopInfo) object).getYue_zhichu()+"");
             topInfo.setShouRu(((TopInfo) object).getYue_shouru()+"");
-            //待完成-本月的收入与支出
         }
     }
 

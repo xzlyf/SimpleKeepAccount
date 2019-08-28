@@ -91,7 +91,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                         //在数据库删除
                         LitePalUtil.deleteBook(time);
                         //回到首页 -重新刷新本地数据
-                        startActivity(new Intent(DetailActivity.this, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        startActivity(new Intent(DetailActivity.this, MainActivity.class)
+                                .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("isSkip",true));
                     }
                 });
                 dialog.setPositiveButton("否", new DialogInterface.OnClickListener() {
