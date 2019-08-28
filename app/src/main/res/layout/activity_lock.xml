@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/dark"
     android:focusableInTouchMode="true"
-    tools:context=".activity.LockActivity">
+    tools:context=".activity.setting.LockActivity">
     <!--组控件，可一键隐藏组内的控件-->
     <android.support.constraint.Group
         android:id="@+id/group_login"

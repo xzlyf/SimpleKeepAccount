@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
 import com.xz.ska.activity.home.AddActivity;
+import com.xz.ska.activity.setting.LockActivity;
 import com.xz.ska.activity.setting.MySelfActivity;
 import com.xz.ska.adapter.NewZhipeiAdapter;
 import com.xz.ska.base.BaseActivity;
@@ -79,7 +80,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             //判断是否已设置过pass
             cfas = (CFAS) LitePalUtil.queryFirst(CFAS.class);
             if (cfas != null) {
-                startActivity(new Intent(MainActivity.this,LockActivity.class).putExtra("isHome",true));
+                startActivity(new Intent(MainActivity.this, LockActivity.class).putExtra("isHome",true));
                 finish();
             }
 

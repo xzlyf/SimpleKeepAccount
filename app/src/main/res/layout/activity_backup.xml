@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark"
+    tools:context=".activity.setting.BackupActivity">
+
+    <FrameLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_45"
+            android:gravity="center"
+            android:text="数据备份"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp_18" />
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/dp_30"
+            android:layout_height="@dimen/dp_30"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp_12"
+            android:background="@drawable/selector_btn"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/dp_5"
+            android:src="@drawable/ic_back_white" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/total_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/background_quanyuanjiao"
+        android:elevation="@dimen/dp_1"
+        android:padding="@dimen/dp_10"
+        android:text="到目前为止已经记录了123条账目"
+        android:textColor="@color/primary_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_layout">
+
+        <TextView
+            android:id="@+id/log_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="@dimen/dp_200" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            style="@style/number_keyboard"
+            android:id="@+id/export_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="导出" />
+        <Button
+            android:id="@+id/import_btn"
+            style="@style/number_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="恢复" />
+        <Button
+            style="@style/number_keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="发送到另一台手机" />
+        <Button
+            style="@style/number_keyboard"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="接收另一台手机的文件" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

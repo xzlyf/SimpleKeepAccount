@@ -6,9 +6,11 @@ import com.xz.ska.entity.Setting;
 import com.xz.ska.entity.TopInfo;
 import com.xz.ska.model.Model;
 import com.xz.ska.sql.LitePalUtil;
+import com.xz.ska.utils.ExcelUtil;
 import com.xz.ska.utils.SharedPreferencesUtil;
 import com.xz.ska.utils.TimeUtil;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.Comparator;
@@ -96,24 +98,65 @@ public class Presenter {
      * 获取用户设置==================================================================================
      */
     public void getUserSetting() {
-
-        //容器
-        Setting setting = new Setting();
-
-
-
-        int hour;
-        int minute;
-        boolean mSwitch = SharedPreferencesUtil.getBoolean(view, "alarm", "mswitch", false);
-        if (mSwitch) {
-            hour = SharedPreferencesUtil.getInt(view, "alarm", "mhour", 23);
-            minute = SharedPreferencesUtil.getInt(view, "alarm", "minute", 23);
-            setting.setShow(mSwitch);
-            setting.setShowString("每天" + hour + ":" + minute);
-        }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //容器
+                Setting setting = new Setting();
 
 
-        view.backToUi(setting);
+
+                int hour;
+                int minute;
+                boolean mSwitch = SharedPreferencesUtil.getBoolean(view, "alarm", "mswitch", false);
+                if (mSwitch) {
+                    hour = SharedPreferencesUtil.getInt(view, "alarm", "mhour", 23);
+                    minute = SharedPreferencesUtil.getInt(view, "alarm", "minute", 23);
+                    setting.setShow(mSwitch);
+                    setting.setShowString("每天" + hour + ":" + minute);
+                }
+
+
+                view.backToUi(setting);
+            }
+        }).start();
+
+
+
+    }
+
+    /**
+     * 备份
+     * 导出excel=====================================================================================
+     */
+    public void export2Excel(final List<Book> allDate) {
+        view.showLoading();
+                //        String filePath = "/sdcard/SimpleKeepAccount";
+                String filePath = view.getExternalFilesDir("backups").toString();
+                File file = new File(filePath);
+                if (!file.exists()) {
+                    file.mkdirs();
+                }
+
+
+                String excelFileName = "/"+System.currentTimeMillis()+".xls";
+
+
+                String[] title = {"time", "money", "remarks","type","title","state"};
+                String sheetName = "ska_Sheet1";
+
+                filePath = filePath + excelFileName;
+
+
+                ExcelUtil.initExcel(filePath, sheetName, title);
+
+
+                boolean result = ExcelUtil.writeObjListToExcel(allDate, filePath, view);
+
+                view.backToUi(result);
+                view.dismissLoading();
+//        mToast("已导出至："+filePath);
+
 
 
     }

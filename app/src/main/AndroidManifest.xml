@@ -16,8 +16,9 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
+        <activity android:name=".activity.setting.BackupActivity"></activity>
         <activity
-            android:name=".activity.LockActivity"
+            android:name=".activity.setting.LockActivity"
             android:theme="@style/addActivity_theme" />
         <activity android:name=".activity.setting.AlarmSettingActivity" />
         <activity android:name=".activity.setting.CategoryAddActivity" />

@@ -1,4 +1,4 @@
-package com.xz.ska.activity;
+package com.xz.ska.activity.setting;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xz.ska.R;
+import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.entity.CFAS;
 import com.xz.ska.sql.LitePalUtil;

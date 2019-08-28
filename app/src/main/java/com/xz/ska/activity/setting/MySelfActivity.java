@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xz.ska.R;
-import com.xz.ska.activity.LockActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.custom.CurrencyDialog;
@@ -23,6 +22,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private FrameLayout btn2;
     private FrameLayout btn3;
     private FrameLayout btn4;
+    private FrameLayout btn5;
     private TextView btn3_sp;
 
     @Override
@@ -47,9 +47,11 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn2 = findViewById(R.id.btn2);
         btn3 = findViewById(R.id.btn3);
         btn4 = findViewById(R.id.btn4);
+        btn5 = findViewById(R.id.btn5);
         btn3_sp = findViewById(R.id.btn3_sp);
         btn3.setOnClickListener(this);
         btn4.setOnClickListener(this);
+        btn5.setOnClickListener(this);
 
     }
 
@@ -104,6 +106,10 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn4:
                 startActivity(new Intent(MySelfActivity.this, LockActivity.class).putExtra("isHome",false));
                 break;
+            case R.id.btn5:
+                startActivity(new Intent(MySelfActivity.this, BackupActivity.class));
+                break;
+
 
 
         }
