@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.R;
 import com.xz.ska.activity.home.AddActivity;
+import com.xz.ska.activity.home.AnalyzeActivity;
 import com.xz.ska.activity.setting.LockActivity;
 import com.xz.ska.activity.setting.MySelfActivity;
 import com.xz.ska.adapter.NewZhipeiAdapter;
@@ -199,7 +200,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 overridePendingTransition(R.anim.push_in_myselfacticity, R.anim.push_out_mainactivity);
                 break;
             case R.id.cartogram_btn:
-                mToast("未配置");
+                startActivity(new Intent(this, AnalyzeActivity.class));
                 break;
 
         }

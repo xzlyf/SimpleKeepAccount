@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -249,5 +250,48 @@ public class Presenter {
                 view.backToUi("网络异常");
             }
         });
+    }
+
+    /**
+     * ==========================================================================================
+     * 月支出账单详情
+     */
+    private List<Book> newList = new ArrayList<>();
+
+    public void getMonthDetails(final long time) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                //待解决-----数据分类
+
+
+                //查询该月和今天的startdate和enddate
+                long[] sco = TimeUtil.getStartAndEndDateV2(time);
+                //查询此月支出收入总数
+                List<Book> totalBook = LitePalUtil.queryBookDATE(sco[2], sco[3]);
+
+                for (Book book : totalBook) {
+
+
+                    if (!isExits(book.getTitle())) {
+
+                    }
+
+                }
+
+            }
+        }).start();
+    }
+
+    private boolean isExits(String s) {
+
+        for (Book book : newList) {
+
+            if (!book.getTitle().equals(s)){
+
+            }
+        }
+        return false;
     }
 }

@@ -7,9 +7,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!-- 安卓8.0打开apk安装更新 -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 安卓8.0打开apk安装更新 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -18,7 +18,8 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".activity.setting.BackupActivity"></activity>
+        <activity android:name=".activity.home.AnalyzeActivity"></activity>
+        <activity android:name=".activity.setting.BackupActivity" />
         <activity
             android:name=".activity.setting.LockActivity"
             android:theme="@style/addActivity_theme" />
@@ -43,6 +44,7 @@
                 <action android:name="com.xz.ska.alarm" />
             </intent-filter>
         </receiver>
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.xz.ska"

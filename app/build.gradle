@@ -38,4 +38,5 @@ dependencies {
     implementation 'com.android.support:gridlayout-v7:28.0.0'
     implementation 'com.github.markushi:circlebutton:1.1'
     implementation files('lib/jxl-2.6.12.jar')
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
