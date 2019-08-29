@@ -3,17 +3,24 @@ package com.xz.ska.presenter;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import com.google.gson.Gson;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
+import com.xz.ska.constan.Local;
 import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Setting;
 import com.xz.ska.entity.TopInfo;
+import com.xz.ska.entity.UpdateServer;
+import com.xz.ska.model.IModel;
 import com.xz.ska.model.Model;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.ExcelUtil;
 import com.xz.ska.utils.SharedPreferencesUtil;
 import com.xz.ska.utils.TimeUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -120,6 +127,9 @@ public class Presenter {
                     setting.setShowString("每天" + hour + ":" + minute);
                 }
 
+                //初始化属性
+                Local.tipsSwitch = SharedPreferencesUtil.getBoolean(view, "state", "tips_switch", false);
+                Local.tipsText = SharedPreferencesUtil.getString(view, "state", "tips_text", "");
 
                 view.backToUi(setting);
             }
@@ -173,13 +183,13 @@ public class Presenter {
 
                 view.showLoading();
 //                List<Book> mlist = ExcelUtil.ReadExcel(view.getExternalFilesDir("backups").toString() + "/1566974377072.xls");
-                List<Book> mlist = ExcelUtil.ReadExcel(view.getExternalFilesDir("backups").toString() + "/"+title);
+                List<Book> mlist = ExcelUtil.ReadExcel(view.getExternalFilesDir("backups").toString() + "/" + title);
 
                 //清空数据库
                 LitePalUtil.deleteAll(Book.class);
                 LogUtil.w("导入：清空完成");
                 //开始写入数据库
-                for (Book book :mlist){
+                for (Book book : mlist) {
                     book.save();
                 }
                 LogUtil.w("导入：写入完成");
@@ -197,5 +207,47 @@ public class Presenter {
             }
         }).start();
 
+    }
+
+    /**
+     * =============================================================================================
+     * 检查更新
+     */
+    public void updateCheck() {
+//        view.showLoading();
+        model.getDataFromNet(Local.UPDATE_SERVER, new IModel.OnLoadCompleteListener() {
+            @Override
+            public void success(String data) {
+
+                LogUtil.w(data);
+
+                JSONObject obj;
+
+                try {
+                    obj = new JSONObject(data);
+                    if (obj.getInt("value") == 1) {
+                        JSONObject obj2 = obj.getJSONObject("data");
+                        Gson gson = new Gson();
+                        UpdateServer us = gson.fromJson(obj2.toString(), UpdateServer.class);
+
+                        view.backToUi(us);
+
+
+                    } else {
+                        view.backToUi(obj.getString("msg"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void failed(Exception e) {
+//                view.dismissLoading();
+                view.backToUi("网络异常");
+            }
+        });
     }
 }

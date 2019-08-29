@@ -67,5 +67,11 @@
 
         <item name="android:focusableInTouchMode">false</item>
     </style>
+    <!--更新对话框样式-->
+    <style name="update_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowNoTitle">true</item><!--无标题-->
+        <item name="android:windowBackground">@color/white</item><!--背景透明-->
+
+    </style>
 
 </resources>

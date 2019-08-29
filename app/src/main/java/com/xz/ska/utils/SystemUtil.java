@@ -23,7 +23,7 @@ public class SystemUtil {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String type = "application/vnd.android.package-archive";
         if (Build.VERSION.SDK_INT >=24){
-            Uri apkUri = FileProvider.getUriForFile(context,"publi.xz.com.smartcoupon",file);
+            Uri apkUri = FileProvider.getUriForFile(context,"com.xz.ska",file);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(apkUri,type);
         }else{

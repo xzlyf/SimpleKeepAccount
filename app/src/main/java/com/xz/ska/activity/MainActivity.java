@@ -29,6 +29,7 @@ import com.xz.ska.custom.SideRecyclerView;
 import com.xz.ska.custom.TipsView;
 import com.xz.ska.entity.CFAS;
 import com.xz.ska.entity.TopInfo;
+import com.xz.ska.entity.UpdateServer;
 import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.DatePickerUtil;
 import com.xz.ska.utils.SharedPreferencesUtil;
@@ -75,21 +76,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (Local.tipsSwitch) {
+            tipsView.setVisibility(View.VISIBLE);
+            tipsView.setTips(Local.tipsText);
+        } else {
+            tipsView.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void init_Data() {
-        if (!getIntent().getBooleanExtra("isSkip",false)){
+        if (!getIntent().getBooleanExtra("isSkip", false)) {
             //判断是否已设置过pass
             cfas = (CFAS) LitePalUtil.queryFirst(CFAS.class);
             if (cfas != null) {
-                startActivity(new Intent(MainActivity.this, LockActivity.class).putExtra("isHome",true));
+                startActivity(new Intent(MainActivity.this, LockActivity.class).putExtra("isHome", true));
                 finish();
             }
 
         }
+        //初始化属性
+        Local.tipsSwitch = SharedPreferencesUtil.getBoolean(this, "state", "tips_switch", false);
+        Local.tipsText = SharedPreferencesUtil.getString(this, "state", "tips_text", "");
+        //获取更新属性
+        presenter.updateCheck();
 
 
         topInfo.setDateChoose(DatePickerUtil.getMonth() + 1 + "", +DatePickerUtil.getDay() + "");
-        tipsView.setTips("哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈0我是提示哈哈哈哈哈哈哈哈");
-        Local.moneySymbol = SharedPreferencesUtil.getString(this,"state","money_symbol","￥");
+        Local.moneySymbol = SharedPreferencesUtil.getString(this, "state", "money_symbol", "￥");
         TypeZhichu.initType(this);
         OldTypeZhichu.initType(this);
         OldTypeShouru.initType(this);
@@ -118,7 +134,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         init_anim();
     }
+
     private Animation xuanzhaun;
+
     private void init_anim() {
         xuanzhaun = AnimationUtils.loadAnimation(this, R.anim.xuanzhuan);
     }
@@ -154,8 +172,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         } else if (object instanceof TopInfo) {
             topInfo.setTodayText(((TopInfo) object).getRi_zhipei() + "");
-            topInfo.setZhiChu(((TopInfo) object).getYue_zhichu()+"");
-            topInfo.setShouRu(((TopInfo) object).getYue_shouru()+"");
+            topInfo.setZhiChu(((TopInfo) object).getYue_zhichu() + "");
+            topInfo.setShouRu(((TopInfo) object).getYue_shouru() + "");
+        } else if (object instanceof UpdateServer) {
+            //填装更新数据
+            Local.level = ((UpdateServer) object).getLevel();
+            Local.name = ((UpdateServer) object).getName();
+            Local.code = ((UpdateServer) object).getCode();
+            Local.msg = ((UpdateServer) object).getMsg();
+            Local.link = ((UpdateServer) object).getLink();
+
         }
     }
 
