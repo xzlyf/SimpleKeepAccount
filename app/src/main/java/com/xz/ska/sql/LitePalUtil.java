@@ -90,6 +90,9 @@ public class LitePalUtil {
         DataSupport.deleteAll(c, conditions);
     }
 
+    public static void deleteAll(Class<?> c){
+        DataSupport.deleteAll(c);
+    }
     /**
      * query=======================================
      *

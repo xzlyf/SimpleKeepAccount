@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/dp_8"
     android:gravity="center"
+    android:clickable="true"
+    android:focusable="true"
     android:orientation="vertical">
 
     <TextView

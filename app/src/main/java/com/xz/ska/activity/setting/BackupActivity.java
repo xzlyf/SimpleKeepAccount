@@ -10,8 +10,10 @@ import com.xz.ska.base.BaseActivity;
 import com.xz.ska.custom.RecyclerDialog;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;
+import com.xz.ska.utils.OnClickItemListener;
 import com.xz.ska.utils.TimeUtil;
 
+import java.io.File;
 import java.util.List;
 
 public class BackupActivity extends BaseActivity implements View.OnClickListener {
@@ -82,10 +84,24 @@ public class BackupActivity extends BaseActivity implements View.OnClickListener
     private void showSelectDialog() {
 //        List<Book> mlist = ExcelUtil.ReadExcel(getExternalFilesDir("backups").toString()+"/1566974377072.xls");
 
+        //找到本地备份文件
+        String filePath = getExternalFilesDir("backups").toString()+"/";
+        File file = new File(filePath);
+        File [] fileList = file.listFiles();
 
         RecyclerDialog dialog = new RecyclerDialog(this,R.style.base_dialog);
         dialog.create();
+        dialog.refresh(fileList);
         dialog.show();
+
+        dialog.setOnItemClickListener(new OnClickItemListener() {
+            @Override
+            public void onClick(int i, String title) {
+
+                presenter.importDate(title);
+
+            }
+        });
     }
 
     private void logTool(String msg){

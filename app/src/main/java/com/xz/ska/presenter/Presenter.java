@@ -1,5 +1,10 @@
 package com.xz.ska.presenter;
 
+import android.content.Intent;
+import android.os.SystemClock;
+
+import com.xz.com.log.LogUtil;
+import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Setting;
@@ -105,7 +110,6 @@ public class Presenter {
                 Setting setting = new Setting();
 
 
-
                 int hour;
                 int minute;
                 boolean mSwitch = SharedPreferencesUtil.getBoolean(view, "alarm", "mswitch", false);
@@ -122,7 +126,6 @@ public class Presenter {
         }).start();
 
 
-
     }
 
     /**
@@ -131,33 +134,68 @@ public class Presenter {
      */
     public void export2Excel(final List<Book> allDate) {
         view.showLoading();
-                //        String filePath = "/sdcard/SimpleKeepAccount";
-                String filePath = view.getExternalFilesDir("backups").toString();
-                File file = new File(filePath);
-                if (!file.exists()) {
-                    file.mkdirs();
-                }
+        //        String filePath = "/sdcard/SimpleKeepAccount";
+        String filePath = view.getExternalFilesDir("backups").toString();
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
 
 
-                String excelFileName = "/"+System.currentTimeMillis()+".xls";
+        String excelFileName = "/" + System.currentTimeMillis() + ".xls";
 
 
-                String[] title = {"time", "money", "remarks","type","title","state"};
-                String sheetName = "ska_Sheet1";
+        String[] title = {"time", "money", "remarks", "type", "title", "state"};
+        String sheetName = "ska_Sheet1";
 
-                filePath = filePath + excelFileName;
-
-
-                ExcelUtil.initExcel(filePath, sheetName, title);
+        filePath = filePath + excelFileName;
 
 
-                boolean result = ExcelUtil.writeObjListToExcel(allDate, filePath, view);
+        ExcelUtil.initExcel(filePath, sheetName, title);
 
-                view.backToUi(result);
-                view.dismissLoading();
+
+        boolean result = ExcelUtil.writeObjListToExcel(allDate, filePath, view);
+
+        view.backToUi(result);
+        view.dismissLoading();
 //        mToast("已导出至："+filePath);
 
 
+    }
+
+    /**
+     * 导入数据
+     */
+    public void importDate(final String title) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                view.showLoading();
+//                List<Book> mlist = ExcelUtil.ReadExcel(view.getExternalFilesDir("backups").toString() + "/1566974377072.xls");
+                List<Book> mlist = ExcelUtil.ReadExcel(view.getExternalFilesDir("backups").toString() + "/"+title);
+
+                //清空数据库
+                LitePalUtil.deleteAll(Book.class);
+                LogUtil.w("导入：清空完成");
+                //开始写入数据库
+                for (Book book :mlist){
+                    book.save();
+                }
+                LogUtil.w("导入：写入完成");
+
+                //模拟一下延迟...
+                SystemClock.sleep(3000);
+
+
+                view.mToast("恢复完成");
+                view.dismissLoading();
+                view.startActivity(new Intent(view, MainActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtra("isSkip", true));
+                view.finish();
+
+            }
+        }).start();
 
     }
 }

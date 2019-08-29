@@ -196,16 +196,16 @@ public class ExcelUtil {
     /**
      * 读取Excel文件
      */
-    public static List<Book> ReadExcel(String fileName){
-         Workbook mWorkbook;
-         Sheet mSheet1 = null;
-         InputStream mInputStream = null;
-         List<Book> mlist = new ArrayList<>();
+    public static List<Book> ReadExcel(String fileName) {
+        Workbook mWorkbook;
+        Sheet mSheet1 = null;
+        InputStream mInputStream = null;
+        List<Book> mlist = new ArrayList<>();
         try {
             mInputStream = new FileInputStream(fileName);
             mWorkbook = Workbook.getWorkbook(mInputStream);
             mSheet1 = mWorkbook.getSheet(0);
-            int rows =mSheet1.getRows();
+            int rows = mSheet1.getRows();
             int cols = mSheet1.getColumns();
 //            Log.d("xz","当前工作表的名字: "+mSheet1.getName());
 //            Log.d("xz", "总行数: "+rows);
@@ -217,7 +217,7 @@ public class ExcelUtil {
                     // getCell(Col,Row)获得单元格的值
 //                    Log.w("xz", "ReadExcel: "+(mSheet1.getCell(j, i)).getContents()  );
                     //通过匹配来装入集合，这样子虽然效率很低，但我也不会其他方法了...
-                    switch (j){
+                    switch (j) {
                         case 0:
                             book.setTimeStamp(Long.valueOf((mSheet1.getCell(j, i)).getContents()));
                             break;
@@ -247,7 +247,9 @@ public class ExcelUtil {
             return null;
         } finally {
             try {
-                mInputStream.close();
+                if (mInputStream != null) {
+                    mInputStream.close();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

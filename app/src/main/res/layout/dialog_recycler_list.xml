@@ -47,11 +47,24 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyceler"
         android:layout_width="match_parent"
+        android:overScrollMode="never"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_35"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_refresh" />
+
+    <ImageView
+        android:id="@+id/empty_view"
+        android:visibility="gone"
+        android:layout_width="@dimen/dp_120"
+        android:layout_height="@dimen/dp_120"
+        android:src="@drawable/empty_tips_2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tips_2" />
 
     <Button
         android:id="@+id/close_btn"
