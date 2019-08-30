@@ -1,13 +1,16 @@
 package com.xz.ska.presenter;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.SystemClock;
 
+import com.github.mikephil.charting.data.PieEntry;
 import com.google.gson.Gson;
 import com.xz.com.log.LogUtil;
 import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
+import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Setting;
 import com.xz.ska.entity.TopInfo;
@@ -21,6 +24,7 @@ import com.xz.ska.utils.TimeUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.litepal.crud.DataSupport;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -254,44 +258,61 @@ public class Presenter {
 
     /**
      * ==========================================================================================
-     * 月支出账单详情
+     * 获取圆环图数据
      */
     private List<Book> newList = new ArrayList<>();
 
-    public void getMonthDetails(final long time) {
+    public void getPieChar(final long time) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
-                //待解决-----数据分类
-
-
                 //查询该月和今天的startdate和enddate
                 long[] sco = TimeUtil.getStartAndEndDateV2(time);
-                //查询此月支出收入总数
-                List<Book> totalBook = LitePalUtil.queryBookDATE(sco[2], sco[3]);
 
-                for (Book book : totalBook) {
-
-
-                    if (!isExits(book.getTitle())) {
-
-                    }
-
+                //1.获取类别名称(系统自带+用户设置）
+                List<String> typeName = new ArrayList<>();
+                for (int i = 0; i < TypeZhichu.getLength(); i++) {
+                    typeName.add(TypeZhichu.getName(i));
                 }
+                //1.1创建一个容器
+                List<PieEntry> yVals = new ArrayList<>();
+                //2.一个个查询数据库，并返回它的总和
+                for (String st : typeName) {
+                    //3.查询该分类的money总和
+                    //计算 title等于st 并且timestamp在本月的money
+                    Cursor cursor = DataSupport.findBySQL("SELECT SUM(money) total FROM book WHERE title ='" + st + "' AND timestamp BETWEEN " + sco[2] + " AND " + sco[3]);
+//                    while (cursor.moveToNext()) {
+//                        Log.d("xz", "run: " + st + "：" + cursor.getFloat(cursor.getColumnIndex("total")));
+//
+//
+//                    }
+                    cursor.moveToNext();
+//                    Log.d("xz", "run: " + st + "：" + cursor.getFloat(cursor.getColumnIndex("total")));
+                    //3.3排除等于0的值
+                    if (cursor.getFloat(cursor.getColumnIndex("total")) != 0f) {
+                        yVals.add(new PieEntry(cursor.getFloat(cursor.getColumnIndex("total")), st));
+                    }
+                    cursor.close();
+                }
+
+                view.backToUi(yVals);
 
             }
         }).start();
     }
 
-    private boolean isExits(String s) {
 
-        for (Book book : newList) {
+    /**
+     * 获取折线图数据
+     */
+    public void getLineChar() {
 
-            if (!book.getTitle().equals(s)){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
 
             }
-        }
-        return false;
+        }).start();
     }
 }

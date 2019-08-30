@@ -23,6 +23,7 @@ import com.xz.ska.constan.CurrencyData;
 import com.xz.ska.constan.Local;
 import com.xz.ska.constan.OldTypeShouru;
 import com.xz.ska.constan.OldTypeZhichu;
+import com.xz.ska.constan.TypeColor;
 import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.custom.InfoTop;
@@ -112,6 +113,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         OldTypeShouru.initType(this);
         TypeShouru.initType(this);
         CurrencyData.initType(this);
+        TypeColor.initType(this);
 
         init_Recycler();
 
