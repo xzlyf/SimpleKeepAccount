@@ -14,7 +14,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -170,7 +169,7 @@ public abstract class BaseActivity extends AppCompatActivity  {
 
 
     //常用方法
-    Toast mToast;
+    private Toast mToast;
     private ProgressDialog progressDialog;
 
     /**
@@ -213,14 +212,13 @@ public abstract class BaseActivity extends AppCompatActivity  {
      * @param text
      */
     private void mToast_handler(String text) {
-        if (!TextUtils.isEmpty(text)) {
-            if (mToast == null) {
-                mToast = Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT);
-            } else {
-                mToast.setText(text);
-            }
-            mToast.show();
+        if (mToast == null) {
+            mToast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(text);
+            mToast.setDuration(Toast.LENGTH_SHORT);
         }
+        mToast.show();
     }
 
 

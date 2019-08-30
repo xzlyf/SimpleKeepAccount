@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xz.ska.R;
 import com.xz.ska.utils.OnClickItemListener;
@@ -202,7 +203,7 @@ public class RecyclerDialog extends Dialog {
                         break;
                     case MotionEvent.ACTION_CANCEL:
                         v.setBackgroundColor(mContext.getColor(R.color.white));
-
+                        break;
                     case MotionEvent.ACTION_UP:
                         v.setBackgroundColor(mContext.getColor(R.color.white));
                         break;
@@ -220,7 +221,10 @@ public class RecyclerDialog extends Dialog {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        files[getLayoutPosition()].delete();
+                        if (!files[getLayoutPosition()].delete()){
+                            Toast.makeText(mContext, "删除失败，请稍后重试", Toast.LENGTH_SHORT).show();
+                            return false;
+                        }
                         mlist.remove(getLayoutPosition());
                         notifyDataSetChanged();
                         if (mlist.size()==0){
@@ -247,7 +251,6 @@ public class RecyclerDialog extends Dialog {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        cancel();
 
                     }
                 });

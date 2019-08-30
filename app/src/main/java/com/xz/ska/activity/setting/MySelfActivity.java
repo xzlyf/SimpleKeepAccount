@@ -1,5 +1,6 @@
 package com.xz.ska.activity.setting;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,14 +14,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xz.ska.R;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.custom.CurrencyDialog;
 import com.xz.ska.custom.UpdateDialog;
+import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Setting;
 import com.xz.ska.entity.UpdateServer;
+import com.xz.ska.sql.LitePalUtil;
 import com.xz.ska.utils.PackageUtil;
 import com.xz.ska.utils.SharedPreferencesUtil;
 
@@ -37,6 +41,8 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private FrameLayout btn5;
     private FrameLayout btn7;
     private TextView btn7Sp;
+    private FrameLayout btn8;
+    private FrameLayout btn9;
     private Switch btn6;
     private EditText tipsEdit;
 
@@ -65,6 +71,8 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn5 = findViewById(R.id.btn5);
         btn6 = findViewById(R.id.btn6);
         btn7 = findViewById(R.id.btn7);
+        btn8 = findViewById(R.id.btn8);
+        btn9 = findViewById(R.id.btn9);
         tipsEdit = findViewById(R.id.btn6_sp);
         btn3_sp = findViewById(R.id.btn3_sp);
         btn7Sp = findViewById(R.id.btn7_sp);
@@ -73,6 +81,8 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn5.setOnClickListener(this);
         btn6.setOnClickListener(this);
         btn7.setOnClickListener(this);
+        btn8.setOnClickListener(this);
+        btn9.setOnClickListener(this);
 
 
     }
@@ -90,7 +100,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
             }
         });
         //本地版本代号
-        btn7Sp.setText("v"+PackageUtil.getVersionName(this));
+        btn7Sp.setText("v" + PackageUtil.getVersionName(this));
 
 
     }
@@ -139,7 +149,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 dialog.setDownloadLink(((UpdateServer) object).getLink());
                 dialog.setLevel(((UpdateServer) object).getLevel());
                 dialog.show();
-            }else{
+            } else {
                 mToast("最新版本啦");
             }
         } else if (object instanceof String) {
@@ -180,7 +190,32 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn7:
                 update();
                 break;
+            case R.id.btn8:
+                mToast("没有意见-_-");
+                break;
+            case R.id.btn9:
+                final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.create();
+                builder.setTitle("警告");
+                builder.setMessage("即将删除所有账本，请慎重选择，是否继续！");
+                builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
+
+                    }
+                });
+                builder.setPositiveButton("继续", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        LitePalUtil.deleteAll(Book.class);
+                        Toast.makeText(MySelfActivity.this, "清空完成", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                builder.show();
+                break;
 
         }
     }
@@ -226,7 +261,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 dialog.setDownloadLink(Local.link);
                 dialog.setLevel(Local.level);
                 dialog.show();
-            }else{
+            } else {
                 mToast("最新版本啦");
             }
         } else {
