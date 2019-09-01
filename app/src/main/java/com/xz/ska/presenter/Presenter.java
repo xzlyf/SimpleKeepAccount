@@ -244,6 +244,7 @@ public class Presenter {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    view.mToast("网络异常");
                 }
 
             }

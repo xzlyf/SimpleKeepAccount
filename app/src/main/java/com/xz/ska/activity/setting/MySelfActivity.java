@@ -43,6 +43,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     private TextView btn7Sp;
     private FrameLayout btn8;
     private FrameLayout btn9;
+    private FrameLayout btn10;
     private Switch btn6;
     private EditText tipsEdit;
 
@@ -73,6 +74,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn7 = findViewById(R.id.btn7);
         btn8 = findViewById(R.id.btn8);
         btn9 = findViewById(R.id.btn9);
+        btn10 = findViewById(R.id.btn10);
         tipsEdit = findViewById(R.id.btn6_sp);
         btn3_sp = findViewById(R.id.btn3_sp);
         btn7Sp = findViewById(R.id.btn7_sp);
@@ -83,6 +85,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         btn7.setOnClickListener(this);
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
+        btn10.setOnClickListener(this);
 
 
     }
@@ -154,6 +157,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
             }
         } else if (object instanceof String) {
             mToast(object.toString());
+            dismissLoading();
         }
     }
 
@@ -215,6 +219,10 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                     }
                 });
                 builder.show();
+                break;
+
+            case R.id.btn10:
+                startActivity(new Intent(MySelfActivity.this,FamilyActivity.class));
                 break;
 
         }
