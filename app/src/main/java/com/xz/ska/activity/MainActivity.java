@@ -203,6 +203,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.cartogram_btn:
                 startActivity(new Intent(this, AnalyzeActivity.class));
+                overridePendingTransition(R.anim.push_in_analyze, R.anim.push_out_mainactivity_2);
                 break;
 
         }

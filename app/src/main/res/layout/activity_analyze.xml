@@ -37,13 +37,37 @@
             app:layout_constraintLeft_toRightOf="@+id/back"
             app:layout_constraintTop_toTopOf="@+id/back" />
 
-
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pie_chart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_280"
+            android:layout_marginTop="@dimen/dp_40"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/pie_chart">
+
+            <Button
+                android:id="@+id/zhichu_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_btn"
+                android:layout_weight="1"
+                android:text="支出" />
+
+            <Button
+                android:id="@+id/shouru_btn"
+                android:layout_width="0dp"
+                android:background="@drawable/selector_btn"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="收入" />
+        </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="类别设置"
+                    android:text="类别管理"
                     android:textSize="@dimen/sp_14" />
 
                 <ImageView
@@ -339,7 +339,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-
+                android:id="@+id/btn11"
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"
                 android:background="@color/white"
@@ -362,6 +362,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/btn12"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"

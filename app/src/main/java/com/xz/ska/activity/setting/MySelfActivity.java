@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,19 +29,9 @@ import com.xz.ska.utils.SharedPreferencesUtil;
 public class MySelfActivity extends BaseActivity implements View.OnClickListener {
 
 
-    private ImageView back;
-    private FrameLayout btn1;
     private TextView btn1Cs;
-    private FrameLayout btn2;
-    private FrameLayout btn3;
     private TextView btn3_sp;
-    private FrameLayout btn4;
-    private FrameLayout btn5;
-    private FrameLayout btn7;
     private TextView btn7Sp;
-    private FrameLayout btn8;
-    private FrameLayout btn9;
-    private FrameLayout btn10;
     private Switch btn6;
     private EditText tipsEdit;
 
@@ -58,36 +46,25 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        back = findViewById(R.id.back);
-        btn1 = findViewById(R.id.btn1);
-        btn2 = findViewById(R.id.btn2);
-
-        back.setOnClickListener(this);
-        btn1.setOnClickListener(this);
-        btn2.setOnClickListener(this);
-        btn1Cs = findViewById(R.id.btn1_cs);
-        btn2 = findViewById(R.id.btn2);
-        btn3 = findViewById(R.id.btn3);
-        btn4 = findViewById(R.id.btn4);
-        btn5 = findViewById(R.id.btn5);
+        findViewById(R.id.back).setOnClickListener(this);
+        findViewById(R.id.btn1).setOnClickListener(this);
+        findViewById(R.id.btn2).setOnClickListener(this);
         btn6 = findViewById(R.id.btn6);
-        btn7 = findViewById(R.id.btn7);
-        btn8 = findViewById(R.id.btn8);
-        btn9 = findViewById(R.id.btn9);
-        btn10 = findViewById(R.id.btn10);
+        btn1Cs = findViewById(R.id.btn1_cs);
+        findViewById(R.id.btn2).setOnClickListener(this);
+        findViewById(R.id.btn3).setOnClickListener(this);
+        findViewById(R.id.btn4).setOnClickListener(this);
+        findViewById(R.id.btn5).setOnClickListener(this);
+        findViewById(R.id.btn6).setOnClickListener(this);
+        findViewById(R.id.btn7).setOnClickListener(this);
+        findViewById(R.id.btn8).setOnClickListener(this);
+        findViewById(R.id.btn9).setOnClickListener(this);
+        findViewById(R.id.btn10).setOnClickListener(this);
+        findViewById(R.id.btn11).setOnClickListener(this);
+        findViewById(R.id.btn12).setOnClickListener(this);
         tipsEdit = findViewById(R.id.btn6_sp);
         btn3_sp = findViewById(R.id.btn3_sp);
         btn7Sp = findViewById(R.id.btn7_sp);
-        btn3.setOnClickListener(this);
-        btn4.setOnClickListener(this);
-        btn5.setOnClickListener(this);
-        btn6.setOnClickListener(this);
-        btn7.setOnClickListener(this);
-        btn8.setOnClickListener(this);
-        btn9.setOnClickListener(this);
-        btn10.setOnClickListener(this);
-
-
     }
 
     @Override
@@ -222,9 +199,27 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 break;
 
             case R.id.btn10:
-                startActivity(new Intent(MySelfActivity.this,FamilyActivity.class));
+                startActivity(new Intent(MySelfActivity.this, FamilyActivity.class));
                 break;
+            case R.id.btn11:
+                Intent intent = new Intent(Intent.ACTION_MEDIA_SHARED);
+                intent.setType("测试测试测试测试测试测试测试测试测试测试123321123456776543211123");  //纯文本
+                /*图片分享
+                　　　　it.setType("image/png");
+                　　　　　//添加图片
+             　　　　 File f = new File(Environment.getExternalStorageDirectory()+"/name.png");
+         　　　　　　
+         　　　　 Uri uri = Uri.fromFile(f);
+         　　　　 intent.putExtra(Intent.EXTRA_STREAM, uri);
+        　　　　　*/
 
+                intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+                intent.putExtra(Intent.EXTRA_TEXT, "I would like to share this with you...");
+                startActivity(Intent.createChooser(intent, getTitle()));
+                break;
+            case R.id.btn12:
+                startActivity(new Intent(MySelfActivity.this, AboutActivity.class));
+                break;
         }
     }
 
@@ -278,7 +273,6 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         }
 
     }
-
 
     /**
      * ===========================================================================================

@@ -10,6 +10,7 @@ import com.xz.com.log.LogUtil;
 import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
+import com.xz.ska.constan.TypeShouru;
 import com.xz.ska.constan.TypeZhichu;
 import com.xz.ska.entity.Book;
 import com.xz.ska.entity.Setting;
@@ -259,9 +260,8 @@ public class Presenter {
 
     /**
      * ==========================================================================================
-     * 获取圆环图数据
+     * 获取圆环图数据(支出)
      */
-    private List<Book> newList = new ArrayList<>();
 
     public void getPieChar(final long time) {
         new Thread(new Runnable() {
@@ -281,7 +281,50 @@ public class Presenter {
                 for (String st : typeName) {
                     //3.查询该分类的money总和
                     //计算 title等于st 并且timestamp在本月的money
-                    Cursor cursor = DataSupport.findBySQL("SELECT SUM(money) total FROM book WHERE title ='" + st + "' AND timestamp BETWEEN " + sco[2] + " AND " + sco[3]);
+                    Cursor cursor = DataSupport.findBySQL("SELECT SUM(money) total FROM book WHERE title ='" + st + "' AND state = 0 AND timestamp BETWEEN " + sco[2] + " AND " + sco[3]);
+//                    while (cursor.moveToNext()) {
+//                        Log.d("xz", "run: " + st + "：" + cursor.getFloat(cursor.getColumnIndex("total")));
+//
+//
+//                    }
+                    cursor.moveToNext();
+//                    Log.d("xz", "run: " + st + "：" + cursor.getFloat(cursor.getColumnIndex("total")));
+                    //3.3排除等于0的值
+                    if (cursor.getFloat(cursor.getColumnIndex("total")) != 0f) {
+                        yVals.add(new PieEntry(cursor.getFloat(cursor.getColumnIndex("total")), st));
+                    }
+                    cursor.close();
+                }
+
+                view.backToUi(yVals);
+
+            }
+        }).start();
+    }
+    /**
+     * ==========================================================================================
+     * 获取圆环图数据(收入)
+     */
+
+    public void getPieChar_shouru(final long time) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //查询该月和今天的startdate和enddate
+                long[] sco = TimeUtil.getStartAndEndDateV2(time);
+
+                //1.获取类别名称(系统自带+用户设置）
+                List<String> typeName = new ArrayList<>();
+                for (int i = 0; i < TypeShouru.getLength(); i++) {
+                    typeName.add(TypeShouru.getName(i));
+                }
+                //1.1创建一个容器
+                List<PieEntry> yVals = new ArrayList<>();
+                //2.一个个查询数据库，并返回它的总和
+                for (String st : typeName) {
+                    //3.查询该分类的money总和
+                    //计算 title等于st 并且timestamp在本月的money
+                    Cursor cursor = DataSupport.findBySQL("SELECT SUM(money) total FROM book WHERE title ='" + st + "' AND state = 1 AND timestamp BETWEEN " + sco[2] + " AND " + sco[3]);
 //                    while (cursor.moveToNext()) {
 //                        Log.d("xz", "run: " + st + "：" + cursor.getFloat(cursor.getColumnIndex("total")));
 //
@@ -302,18 +345,4 @@ public class Presenter {
         }).start();
     }
 
-
-    /**
-     * 获取折线图数据
-     */
-    public void getLineChar() {
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-
-            }
-        }).start();
-    }
 }

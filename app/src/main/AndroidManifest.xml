@@ -18,8 +18,13 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".activity.setting.FamilyActivity"></activity>
-        <activity android:name=".activity.home.AnalyzeActivity" />
+        <activity android:name=".activity.setting.AboutActivity"></activity>
+        <activity
+            android:name=".activity.setting.FamilyActivity"
+            android:theme="@style/addActivity_theme" />
+        <activity
+            android:name=".activity.home.AnalyzeActivity"
+            android:theme="@style/addActivity_theme" />
         <activity android:name=".activity.setting.BackupActivity" />
         <activity
             android:name=".activity.setting.LockActivity"

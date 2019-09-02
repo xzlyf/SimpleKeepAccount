@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2ecc71"
+    android:background="@color/dark"
+    android:orientation="vertical"
     tools:context=".activity.setting.FamilyActivity">
+
 
     <FrameLayout
         android:id="@+id/tv_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#27ae60"
-        android:orientation="horizontal"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="#fff"
+        android:elevation="@dimen/dp_4"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tv_title"
@@ -22,7 +23,6 @@
             android:layout_height="@dimen/dp_45"
             android:gravity="center"
             android:text="系列软件"
-            android:textColor="@color/white"
             android:textSize="@dimen/sp_18" />
 
         <ImageView
@@ -35,11 +35,65 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/dp_5"
-            android:src="@drawable/ic_back_white" />
+            android:src="@drawable/ic_back_black" />
     </FrameLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/tv_toolbar" />
-</android.support.constraint.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tv_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ac_msg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_18">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="轻巧是一种品质"
+                    android:textSize="@dimen/sp_18"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:background="#929292" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="简约时代是化繁为简的时代。\n简约时代是以简为美的时代。" />
+
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_app"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_40"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/dp_30"
+                android:paddingEnd="@dimen/dp_30" />
+            <TextView
+                android:id="@+id/load_view"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_80"
+                android:textSize="@dimen/sp_22"
+                android:layout_gravity="center"
+                android:text="加载中..."/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</LinearLayout>

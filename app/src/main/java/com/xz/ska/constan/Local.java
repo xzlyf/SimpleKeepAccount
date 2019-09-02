@@ -6,10 +6,10 @@ public class Local {
     public static final int IS_REFRESH = 0;//回调标识
 
     private static final String HERF = "http://";
-    //    private static final String BASE_SERVER = "www.xzlyf.club";
-    //    private static final String PORT = "";
-    private static final String BASE_SERVER = "192.168.0.177";
-    private static final String PORT = "8080";
+        private static final String BASE_SERVER = "www.xzlyf.club";
+        private static final String PORT = "";
+//    private static final String BASE_SERVER = "192.168.0.177";
+//    private static final String PORT = "8080";
     public static final String BASE_HERF = HERF + BASE_SERVER + ":" + PORT;
     public static final String UPDATE_SERVER = HERF + BASE_SERVER + ":" + PORT + "/SimpleKeepAccount/update.json";//默认更新地址
 
