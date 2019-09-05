@@ -202,20 +202,11 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 startActivity(new Intent(MySelfActivity.this, FamilyActivity.class));
                 break;
             case R.id.btn11:
-                Intent intent = new Intent(Intent.ACTION_MEDIA_SHARED);
-                intent.setType("测试测试测试测试测试测试测试测试测试测试123321123456776543211123");  //纯文本
-                /*图片分享
-                　　　　it.setType("image/png");
-                　　　　　//添加图片
-             　　　　 File f = new File(Environment.getExternalStorageDirectory()+"/name.png");
-         　　　　　　
-         　　　　 Uri uri = Uri.fromFile(f);
-         　　　　 intent.putExtra(Intent.EXTRA_STREAM, uri);
-        　　　　　*/
-
-                intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
-                intent.putExtra(Intent.EXTRA_TEXT, "I would like to share this with you...");
-                startActivity(Intent.createChooser(intent, getTitle()));
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.setType("text/plain");
+                startActivity(Intent.createChooser(sendIntent, "Share to..."));
                 break;
             case R.id.btn12:
                 startActivity(new Intent(MySelfActivity.this, AboutActivity.class));
@@ -289,6 +280,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
         }
         return super.dispatchTouchEvent(ev);
     }
+
 
     /**
      * 判定当前是否需要隐藏
