@@ -241,6 +241,7 @@
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"
                 android:background="@color/white"
+
                 android:orientation="horizontal"
                 android:paddingStart="@dimen/dp_10"
                 android:paddingEnd="@dimen/dp_10">

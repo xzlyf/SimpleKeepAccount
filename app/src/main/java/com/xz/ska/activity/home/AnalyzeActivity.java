@@ -55,7 +55,7 @@ public class AnalyzeActivity extends BaseActivity implements View.OnClickListene
         pieChart.setDragDecelerationFrictionCoef(0.9f);//转盘摩檫力
         //描述文字
         Description ds = new Description();
-        ds.setText("月支出占比图");
+        ds.setText("");
         ds.setTextSize(14f);
         ds.setTextColor(getColor(R.color.glossDark));
         pieChart.setDescription(ds);

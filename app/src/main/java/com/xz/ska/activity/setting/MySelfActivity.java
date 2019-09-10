@@ -172,7 +172,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
                 update();
                 break;
             case R.id.btn8:
-                mToast("没有意见-_-");
+                mToast("敬请期待");
                 break;
             case R.id.btn9:
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -204,7 +204,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn11:
                 Intent sendIntent = new Intent();
                 sendIntent.setAction(Intent.ACTION_SEND);
-                sendIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "【轻巧记账】这软件很不错哦！你也去试试吧！");
                 sendIntent.setType("text/plain");
                 startActivity(Intent.createChooser(sendIntent, "Share to..."));
                 break;
