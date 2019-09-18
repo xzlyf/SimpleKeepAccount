@@ -55,7 +55,7 @@ public class AlarmSettingActivity extends BaseActivity implements View.OnClickLi
         timeSelect.setIs24HourView(true);//设置24小时制
         mHour = timeSelect.getHour();
         mMinute = timeSelect.getMinute();
-        alarmTips.setText("我将每天" + mHour + ":" + mMinute + "分提醒您记账");
+        alarmTips.setText("我将每天" + mHour + ":" + autoZore(mMinute) + "分提醒您记账");
         alarmTips.setVisibility(View.INVISIBLE);
 
 
@@ -91,7 +91,7 @@ public class AlarmSettingActivity extends BaseActivity implements View.OnClickLi
 
             @Override
             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                alarmTips.setText("我将每天" + hourOfDay + ":" + minute + "分提醒您记账");
+                alarmTips.setText("我将每天" + hourOfDay + ":" + autoZore(minute) + "分提醒您记账");
             }
         });
     }
@@ -134,5 +134,12 @@ public class AlarmSettingActivity extends BaseActivity implements View.OnClickLi
                 finish();
                 break;
         }
+    }
+
+    private String autoZore(int i){
+        if (i<10)
+            return "0"+i;
+
+        return String.valueOf(i);
     }
 }

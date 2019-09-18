@@ -130,7 +130,7 @@ public class Presenter {
                     hour = SharedPreferencesUtil.getInt(view, "alarm", "mhour", 23);
                     minute = SharedPreferencesUtil.getInt(view, "alarm", "minute", 23);
                     setting.setShow(mSwitch);
-                    setting.setShowString("每天" + hour + ":" + minute);
+                    setting.setShowString("每天" + hour + ":" + autoZore(minute));
                 }
 
                 //初始化属性
@@ -142,6 +142,12 @@ public class Presenter {
         }).start();
 
 
+    }
+    private String autoZore(int i){
+        if (i<10)
+            return "0"+i;
+
+        return String.valueOf(i);
     }
 
     /**

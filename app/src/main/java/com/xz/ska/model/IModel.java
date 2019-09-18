@@ -8,7 +8,7 @@ public interface IModel {
     interface OnLoadCompleteListener {
         void success(String data);
 
-        void failed(Exception e);
+            void failed(Exception e);
     }
 
     //回调接口2.0
