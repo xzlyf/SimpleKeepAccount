@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
-import com.xz.com.log.LogUtil;
+import com.orhanobut.logger.Logger;
 import com.xz.ska.R;
 import com.xz.ska.entity.Category;
 import com.xz.ska.sql.LitePalUtil;
@@ -53,7 +53,7 @@ public class TypeShouru {
      */
     private static void addUserCustom() {
         List<Category> list = (List<Category>) LitePalUtil.queryAll(Category.class);
-        LogUtil.w("用户自定义类型:" + list.size());
+        Logger.d("用户自定义类型:" + list.size());
         for (Category category : list) {
             if (category.getState() == 1) {
                 name.add(category.getName());

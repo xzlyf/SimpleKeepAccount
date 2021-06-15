@@ -1,8 +1,9 @@
 package com.xz.ska.utils;
 
 import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 修饰RecyclerView的Item的间距

@@ -2,7 +2,6 @@ package com.xz.ska.activity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -11,7 +10,9 @@ import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
-import com.xz.com.log.LogUtil;
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.orhanobut.logger.Logger;
 import com.xz.ska.R;
 import com.xz.ska.activity.home.AddActivity;
 import com.xz.ska.activity.home.AnalyzeActivity;
@@ -123,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = year + "年" + (month + 1) + "月" + dayOfMonth + "日";
 
-                LogUtil.w("已选择" + date);
+                Logger.d("已选择" + date);
                 //获取指定日期的数据细节
                 presenter.getDetailData(TimeUtil.getStringToDate(date, "yyyy年MM月dd日"));
                 //跟新月份显示

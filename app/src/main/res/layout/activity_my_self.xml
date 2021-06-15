@@ -36,7 +36,7 @@
             android:src="@drawable/ic_back_white" />
     </FrameLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -95,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="类别管理"
+                    android:text="分类管理"
                     android:textSize="@dimen/sp_14" />
 
                 <ImageView
@@ -386,13 +386,6 @@
                     android:src="@drawable/ic_right" />
             </FrameLayout>
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:gravity="bottom|center_horizontal"-->
-                <!--android:paddingBottom="@dimen/dp_20"-->
-                <!--android:text="@string/copyright"-->
-                <!--android:textSize="@dimen/sp_10" />-->
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

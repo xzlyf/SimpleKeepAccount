@@ -1,11 +1,12 @@
 package com.xz.ska.activity.setting;
 
-import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.xz.ska.R;
 import com.xz.ska.base.BaseActivity;

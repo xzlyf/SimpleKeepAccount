@@ -1,6 +1,5 @@
 package com.xz.ska.utils;
 
-import com.xz.com.log.LogUtil;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

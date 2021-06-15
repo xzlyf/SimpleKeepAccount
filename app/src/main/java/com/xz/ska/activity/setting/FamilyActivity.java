@@ -4,11 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.xz.com.log.LogUtil;
+import com.orhanobut.logger.Logger;
 import com.xz.ska.R;
 import com.xz.ska.constan.Local;
 import com.xz.ska.entity.Framily;
@@ -213,7 +214,7 @@ public class FamilyActivity extends AppCompatActivity {
                         listener.success(responseData);
                     } catch (IOException e) {
                         e.printStackTrace();
-                        LogUtil.w("请求失败链接：" + url);
+                        Logger.d("请求失败链接：" + url);
                         listener.failed(e);
                     }
                 }

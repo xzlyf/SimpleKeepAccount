@@ -74,7 +74,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -95,7 +95,7 @@
                 android:text="用户增加"
                 android:textColor="@color/secondary_text" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/user_icon_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +110,7 @@
                 android:text="系统默认"
                 android:textColor="@color/secondary_text" />
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/system_icon_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -118,6 +118,6 @@
 
 
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

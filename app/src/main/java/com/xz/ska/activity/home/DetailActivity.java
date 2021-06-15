@@ -1,16 +1,18 @@
 package com.xz.ska.activity.home;
 
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.xz.com.log.LogUtil;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.orhanobut.logger.Logger;
 import com.xz.ska.R;
 import com.xz.ska.activity.MainActivity;
 import com.xz.ska.constan.Local;
@@ -86,7 +88,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 dialog.setNegativeButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        LogUtil.w("删除" + book.getMoney());
+                        Logger.d("删除" + book.getMoney());
                         long time = book.getTimeStamp();
                         //在数据库删除
                         LitePalUtil.deleteBook(time);

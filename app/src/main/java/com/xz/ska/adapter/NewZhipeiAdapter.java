@@ -1,11 +1,10 @@
 package com.xz.ska.adapter;
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,9 +13,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xz.com.log.LogUtil;
-import com.xz.ska.activity.home.DetailActivity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.orhanobut.logger.Logger;
 import com.xz.ska.R;
+import com.xz.ska.activity.home.DetailActivity;
 import com.xz.ska.constan.Local;
 import com.xz.ska.entity.Book;
 import com.xz.ska.sql.LitePalUtil;
@@ -69,7 +71,7 @@ public class NewZhipeiAdapter extends RecyclerView.Adapter<NewZhipeiAdapter.Slid
                 dialog.setNegativeButton("是", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        LogUtil.w("删除" + book.getMoney());
+                        Logger.d("删除" + book.getMoney());
                         long time = book.getTimeStamp();
                         //在数据库删除
                         LitePalUtil.deleteBook(time);

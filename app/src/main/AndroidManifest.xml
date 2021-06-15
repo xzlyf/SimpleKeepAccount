@@ -18,7 +18,7 @@
         android:roundIcon="@drawable/logo_max"
         android:supportsRtl="true"
         android:theme="@style/AppNoTitle">
-        <activity android:name=".activity.setting.AboutActivity"></activity>
+        <activity android:name=".activity.setting.AboutActivity" />
         <activity
             android:name=".activity.setting.FamilyActivity"
             android:theme="@style/addActivity_theme" />
@@ -52,7 +52,7 @@
         </receiver>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="com.xz.ska"
             android:exported="false"
             android:grantUriPermissions="true">

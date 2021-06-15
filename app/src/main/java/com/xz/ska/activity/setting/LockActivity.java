@@ -7,10 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.constraint.Group;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.NonNull;
 import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.EditText;
@@ -18,6 +15,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.constraintlayout.widget.Group;
+import androidx.core.app.ActivityCompat;
 
 import com.xz.ska.R;
 import com.xz.ska.activity.MainActivity;

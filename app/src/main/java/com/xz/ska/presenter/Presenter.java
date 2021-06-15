@@ -6,7 +6,7 @@ import android.os.SystemClock;
 
 import com.github.mikephil.charting.data.PieEntry;
 import com.google.gson.Gson;
-import com.xz.com.log.LogUtil;
+import com.orhanobut.logger.Logger;
 import com.xz.ska.activity.MainActivity;
 import com.xz.ska.base.BaseActivity;
 import com.xz.ska.constan.Local;
@@ -26,6 +26,7 @@ import com.xz.ska.utils.TimeUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
+import org.litepal.util.LogUtil;
 
 import java.io.File;
 import java.math.BigDecimal;
@@ -199,12 +200,12 @@ public class Presenter {
 
                 //清空数据库
                 LitePalUtil.deleteAll(Book.class);
-                LogUtil.w("导入：清空完成");
+                Logger.d("导入：清空完成");
                 //开始写入数据库
                 for (Book book : mlist) {
                     book.save();
                 }
-                LogUtil.w("导入：写入完成");
+                Logger.d("导入：写入完成");
 
                 //模拟一下延迟...
                 SystemClock.sleep(3000);
@@ -231,7 +232,7 @@ public class Presenter {
             @Override
             public void success(String data) {
 
-                LogUtil.w(data);
+                Logger.d(data);
 
                 JSONObject obj;
 

@@ -38,7 +38,7 @@
             android:src="@drawable/ic_back_black" />
     </FrameLayout>
 
-    <android.support.v4.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/tv_toolbar">
@@ -76,7 +76,7 @@
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_app"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,15 +85,16 @@
                 android:overScrollMode="never"
                 android:paddingStart="@dimen/dp_30"
                 android:paddingEnd="@dimen/dp_30" />
+
             <TextView
                 android:id="@+id/load_view"
-                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_80"
-                android:textSize="@dimen/sp_22"
                 android:layout_gravity="center"
-                android:text="加载中..."/>
+                android:layout_marginTop="@dimen/dp_80"
+                android:text="加载中..."
+                android:textSize="@dimen/sp_22"
+                android:visibility="gone" />
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

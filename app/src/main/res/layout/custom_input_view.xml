@@ -15,7 +15,7 @@
         android:focusable="true"
         android:padding="@dimen/dp_5"
         android:layout_margin="@dimen/dp_15"/>
-    <android.support.v7.widget.CardView
+    <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
             android:background="@color/secondary_text"
             android:padding="@dimen/dp_8"
             android:src="@drawable/id_gouwu" />
-    </android.support.v7.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/time_text"

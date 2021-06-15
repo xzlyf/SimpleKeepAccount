@@ -1,10 +1,13 @@
 package com.xz.ska;
 
+
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 
-import com.xz.com.log.LogConfig;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
+import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 
 import org.litepal.LitePalApplication;
 
@@ -23,9 +26,13 @@ public class MyApplication extends LitePalApplication {
     }
 
     private void init_log() {
-        LogConfig config = LogConfig.getInstance();
-        config.setShowLog(true);
-        config.setFlag("xz");
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(true)      //（可选）是否显示线程信息。 默认值为true
+                .methodCount(1)               // （可选）要显示的方法行数。 默认2
+                .methodOffset(0)               // （可选）设置调用堆栈的函数偏移值，0的话则从打印该Log的函数开始输出堆栈信息，默认是0
+                .tag("xzlyf")                  //（可选）每个日志的全局标记。 默认PRETTY_LOGGER（如上图）
+                .build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 
 
     }

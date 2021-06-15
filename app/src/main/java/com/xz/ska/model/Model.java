@@ -1,6 +1,6 @@
 package com.xz.ska.model;
 
-import com.xz.com.log.LogUtil;
+import com.orhanobut.logger.Logger;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -33,7 +33,7 @@ public class Model implements IModel {
                     listener.success(responseData);
                 } catch (IOException e) {
                     e.printStackTrace();
-                    LogUtil.w("请求失败链接："+url);
+                    Logger.d("请求失败链接："+url);
                     listener.failed(e);
                 }
             }
