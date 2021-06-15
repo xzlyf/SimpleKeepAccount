@@ -18,7 +18,6 @@ import at.markushi.ui.CircleButton;
 public class AlarmSettingActivity extends BaseActivity implements View.OnClickListener{
 
 
-    private ImageView back;
     private TextView alarmTips;
     private SwitchCompat alarmSwitch;
     private TimePicker timeSelect;
@@ -37,19 +36,18 @@ public class AlarmSettingActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void initView() {
-        back = findViewById(R.id.back);
         alarmTips = findViewById(R.id.alarm_tips);
         alarmSwitch = findViewById(R.id.alarm_switch);
         timeSelect = findViewById(R.id.time_select);
         submit = findViewById(R.id.submit);
         submit.setOnClickListener(this);
-        back.setOnClickListener(this);
 
     }
 
 
     @Override
     public void init_Data() {
+        setTitle("提醒记账");
         //获取存储的状态
         amSwitch = SharedPreferencesUtil.getBoolean(this, "alarm", "mswitch", false);
         alarmSwitch.setChecked(amSwitch);
@@ -130,9 +128,6 @@ public class AlarmSettingActivity extends BaseActivity implements View.OnClickLi
 
 
                 }
-                break;
-            case R.id.back:
-                finish();
                 break;
         }
     }

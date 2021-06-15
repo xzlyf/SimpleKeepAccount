@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">轻巧记账</string>
     <string name="app_name_zh">轻巧记账</string>
-    <string name="copyright">COPYRIGHT © 2019 by Xzlyf</string>
+    <string name="copyright">©2021 Xzlyf Studio.All rights reserved.</string>
+
+    <string name="return_previou">放回上一页</string>
 </resources>

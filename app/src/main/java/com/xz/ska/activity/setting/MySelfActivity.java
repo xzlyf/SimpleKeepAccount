@@ -46,7 +46,6 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initView() {
-        findViewById(R.id.back).setOnClickListener(this);
         findViewById(R.id.btn1).setOnClickListener(this);
         findViewById(R.id.btn2).setOnClickListener(this);
         btn6 = findViewById(R.id.btn6);
@@ -69,6 +68,7 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void init_Data() {
+        setTitle("设置");
         //设置属性状态
         btn1Cs.setText("已选择：" + Local.moneySymbol);
 
@@ -150,9 +150,6 @@ public class MySelfActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.back:
-                finish();
-                break;
             case R.id.btn1:
                 currency();
                 break;

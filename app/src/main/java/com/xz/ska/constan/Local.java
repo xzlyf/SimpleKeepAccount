@@ -5,6 +5,10 @@ public class Local {
     public static int state = 0;//0支出  1收入
     public static final int IS_REFRESH = 0;//回调标识
 
+    public static final String PACKAGE_NAME = "com.xz.ska";
+    public static final String WeChat = "小泽干货铺";
+
+
     private static final String HERF = "http://";
         private static final String BASE_SERVER = "www.xzlyf.club";
         private static final String PORT = "";

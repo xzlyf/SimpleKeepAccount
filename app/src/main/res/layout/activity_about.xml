@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark"
     android:overScrollMode="never">
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <include layout="@layout/toolbar_common" />
 
         <ImageView
             android:id="@+id/image_launch"
@@ -33,8 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_25"
-            android:text="[轻巧记账]简约而不简单的记账软件\n
-"
+            android:text="[轻巧记账]简约而不简单的记账软件\n"
             android:textColor="@color/secondary_text" />
 
         <TextView
@@ -114,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="@dimen/dp_20"
-            android:text="©2021 Xzlyf Studio.All rights reserved."
+            android:text="@string/copyright"
             android:textColor="@color/secondary_text"
             android:textSize="@dimen/sp_12" />
     </LinearLayout>

@@ -1,40 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark"
-    android:orientation="vertical"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     tools:context=".activity.setting.MySelfActivity">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="设置"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/dp_12"
-            android:background="@drawable/selector_btn"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/dp_5"
-            android:src="@drawable/ic_back_white" />
-    </FrameLayout>
+    <include layout="@layout/toolbar_common" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -216,14 +190,14 @@
                 android:id="@+id/btn6_sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="start"
                 android:autoLink="none"
                 android:background="#fff"
-                android:textColor="@color/secondary_text"
-                android:maxLength="255"
-                android:textSize="@dimen/sp_14"
+                android:gravity="start"
                 android:maxHeight="@dimen/dp_150"
-                android:padding="15dp" />
+                android:maxLength="255"
+                android:padding="15dp"
+                android:textColor="@color/secondary_text"
+                android:textSize="@dimen/sp_14" />
 
 
             <TextView
@@ -236,8 +210,8 @@
                 android:textColor="@color/divider" />
 
             <FrameLayout
-                android:layout_width="match_parent"
                 android:id="@+id/btn7"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"
                 android:background="@color/white"
@@ -286,8 +260,8 @@
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="match_parent"
                 android:id="@+id/btn9"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"
                 android:background="@color/white"
@@ -339,8 +313,8 @@
             </FrameLayout>
 
             <FrameLayout
-                android:layout_width="match_parent"
                 android:id="@+id/btn11"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_34"
                 android:layout_marginTop="@dimen/dp_2"
                 android:background="@color/white"

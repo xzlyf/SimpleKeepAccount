@@ -6,35 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/dark"
     tools:context=".activity.setting.BackupActivity">
-    <FrameLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_45"
-            android:gravity="center"
-            android:text="数据备份"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp_18" />
-
-        <ImageView
-            android:id="@+id/back"
-            android:layout_width="@dimen/dp_30"
-            android:layout_height="@dimen/dp_30"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="@dimen/dp_12"
-            android:background="@drawable/selector_btn"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="@dimen/dp_5"
-            android:src="@drawable/ic_back_white" />
-
-    </FrameLayout>
+    <include android:id="@+id/toolbar" layout="@layout/toolbar_common" />
 
     <TextView
         android:id="@+id/total_number"
@@ -70,22 +43,25 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
-            style="@style/number_keyboard"
             android:id="@+id/export_btn"
+            style="@style/number_keyboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="导出" />
+
         <Button
             android:id="@+id/import_btn"
             style="@style/number_keyboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="恢复" />
+
         <Button
             style="@style/number_keyboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="发送到另一台手机" />
+
         <Button
             style="@style/number_keyboard"
 

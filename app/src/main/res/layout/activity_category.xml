@@ -37,7 +37,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="@dimen/dp_5"
-                android:src="@drawable/ic_back_white" />
+                android:src="@drawable/ic_back" />
 
             <ImageView
                 android:id="@+id/add_type"

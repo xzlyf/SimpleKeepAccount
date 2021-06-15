@@ -35,7 +35,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="@dimen/dp_5"
-            android:src="@drawable/ic_back_black" />
+            android:src="@drawable/ic_back_dark" />
     </FrameLayout>
 
     <androidx.core.widget.NestedScrollView
